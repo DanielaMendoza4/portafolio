@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Proyectos — filas alternadas (zig-zag) con efecto al pasar el cursor.
+   ========================================================================== */
+
+.proyectos-encabezado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.proyectos-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.proyecto {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-7);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.proyecto-media {
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-2);
+}
+
+.proyecto-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.proyecto:hover .proyecto-media img {
+  transform: scale(1.05);
+}
+
+/* Marcador de posición cuando el proyecto no tiene imagen */
+.proyecto-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: var(--space-5);
+  background: linear-gradient(135deg, var(--color-surface-2), var(--color-surface));
+}
+
+.proyecto-placeholder-numero {
+  font-family: var(--font-title);
+  font-size: var(--step-3);
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.proyecto-placeholder-titulo {
+  font-family: var(--font-title);
+  font-size: var(--step-1);
+  color: var(--color-muted);
+}
+
+.proyecto-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.proyecto-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.proyecto-indice {
+  font-family: var(--font-title);
+  font-size: var(--step-1);
+  color: var(--color-muted);
+}
+
+.proyecto-titulo {
+  font-size: var(--step-2);
+}
+
+.proyecto-descripcion {
+  max-width: 55ch;
+  color: var(--color-muted);
+}
+
+.proyecto-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--space-1) var(--space-3);
+}
+
+.proyecto-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* --- Escritorio: dos columnas alternadas --- */
+@media (min-width: 55rem) {
+  .proyecto {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .proyecto:nth-child(even) .proyecto-media {
+    order: 2;
+  }
+
+  .proyecto:nth-child(even) .proyecto-info {
+    order: 1;
+  }
+}

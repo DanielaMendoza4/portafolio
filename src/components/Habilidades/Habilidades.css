@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Habilidades — grupos por categoría con barras de nivel.
+   ========================================================================== */
+
+.habilidades-encabezado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-6);
+}
+
+.habilidad-grupo {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.habilidad-grupo:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.habilidad-categoria {
+  font-size: var(--step-1);
+}
+
+.habilidad-grupo-descripcion {
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-4);
+  font-size: var(--step--1);
+  color: var(--color-muted);
+}
+
+.habilidad-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.habilidad-fila {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.habilidad-nombre {
+  font-weight: 600;
+}
+
+.habilidad-nivel {
+  font-size: var(--step--1);
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Barra de nivel (elemento <progress>) estilizada con variables */
+.habilidad-barra {
+  width: 100%;
+  height: var(--space-2);
+  margin-top: var(--space-2);
+  border: none;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background-color: var(--color-surface-2);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.habilidad-barra::-webkit-progress-bar {
+  background-color: var(--color-surface-2);
+  border-radius: var(--radius-pill);
+}
+
+.habilidad-barra::-webkit-progress-value {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+.habilidad-barra::-moz-progress-bar {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+.habilidad-descripcion {
+  margin-top: var(--space-2);
+  font-size: var(--step--1);
+  color: var(--color-muted);
+}

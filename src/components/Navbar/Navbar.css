@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Navbar — barra flotante tipo "píldora" + menú a pantalla completa en móvil.
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  inset: var(--space-4) 0 auto 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-inline: var(--space-4);
+  pointer-events: none;
+}
+
+.navbar-inner {
+  pointer-events: auto;
+  position: relative;
+  z-index: 70;
+  width: min(100%, var(--content-width));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-translucent);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(0.6rem);
+}
+
+.navbar-logo {
+  font-family: var(--font-title);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.navbar-tema,
+.navbar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.navbar-tema:hover,
+.navbar-toggle:hover {
+  color: var(--color-accent);
+  background-color: var(--color-surface-2);
+}
+
+.navbar-icono {
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--border-width-strong);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- Menú: en móvil es una capa a pantalla completa --- */
+.navbar-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-8) var(--space-5);
+  background-color: var(--color-bg);
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition: transform var(--transition), visibility var(--transition);
+}
+
+.navbar-menu.is-open {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.navbar-enlace {
+  font-family: var(--font-title);
+  font-size: var(--step-2);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.navbar-enlace:hover {
+  color: var(--color-accent);
+}
+
+/* --- Escritorio: menú en línea dentro de la píldora --- */
+@media (min-width: 48rem) {
+  .navbar-toggle {
+    display: none;
+  }
+
+  .navbar-menu {
+    position: static;
+    inset: auto;
+    z-index: auto;
+    flex-direction: row;
+    gap: var(--space-5);
+    padding: 0;
+    background-color: transparent;
+    transform: none;
+    visibility: visible;
+    width: auto;
+  }
+
+  .navbar-enlace {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+}

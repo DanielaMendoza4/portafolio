@@ -1,0 +1,330 @@
+/* ==========================================================================
+   index.css — Identidad visual global del portafolio
+   Aquí viven TODAS las variables de diseño. Cambiar la identidad visual
+   (colores, fuentes, espaciados, radios, sombras) solo requiere editar :root.
+   ========================================================================== */
+
+:root {
+  /* --- Tipografías --- */
+  --font-title: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- Colores · Modo claro --- */
+  --color-bg: #f7f4ef;
+  --color-surface: #ffffff;
+  --color-surface-2: #efeae1;
+  --color-surface-translucent: rgba(255, 255, 255, 0.85);
+  --color-text: #16130f;
+  --color-muted: #6f675c;
+  --color-accent: #d2542f;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: rgba(210, 84, 47, 0.12);
+  --color-border: rgba(22, 19, 15, 0.12);
+
+  /* --- Espaciado fluido (escala 1–8) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: clamp(2.5rem, 6vw, 4rem);
+  --space-8: clamp(4rem, 10vw, 7rem);
+
+  /* --- Radios --- */
+  --radius-sm: 0.4rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+
+  /* --- Sombras --- */
+  --shadow-sm: 0 1px 2px rgba(22, 19, 15, 0.06);
+  --shadow-md: 0 12px 30px -12px rgba(22, 19, 15, 0.25);
+  --shadow-lg: 0 30px 60px -25px rgba(22, 19, 15, 0.35);
+
+  /* --- Tipografía fluida --- */
+  --step--1: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.6vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1.2vw, 2.2rem);
+  --step-3: clamp(2rem, 1.5rem + 2.5vw, 3.4rem);
+  --step-4: clamp(2.6rem, 1.8rem + 4vw, 5rem);
+
+  /* --- Layout --- */
+  --content-width: 72rem;
+  --header-height: 5rem;
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --transition: 0.25s ease;
+}
+
+/* --- Colores · Modo oscuro --- */
+[data-theme='dark'] {
+  --color-bg: #14110e;
+  --color-surface: #1d1915;
+  --color-surface-2: #262019;
+  --color-surface-translucent: rgba(29, 25, 21, 0.85);
+  --color-text: #f4efe7;
+  --color-muted: #a89e8f;
+  --color-accent: #e8764f;
+  --color-accent-contrast: #1a1410;
+  --color-accent-soft: rgba(232, 118, 79, 0.16);
+  --color-border: rgba(244, 239, 231, 0.14);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 30px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 30px 60px -25px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Reset mínimo
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Foco visible accesible en toda la app */
+:focus-visible {
+  outline: var(--border-width-strong) solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Utilidades globales (definidas UNA sola vez)
+   ========================================================================== */
+
+/* Ancho de contenido centrado, nunca genera scroll horizontal */
+.container {
+  width: min(calc(100% - var(--space-5) * 2), var(--content-width));
+  margin-inline: auto;
+}
+
+/* Espaciado vertical estándar de cada sección */
+.section {
+  padding-block: var(--space-8);
+}
+
+.section-eyebrow {
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.section-title {
+  font-size: var(--step-3);
+  max-width: 22ch;
+}
+
+.section-lead {
+  color: var(--color-muted);
+  max-width: 55ch;
+}
+
+/* Color de acento reutilizable */
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: fit-content;
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform var(--transition), background-color var(--transition),
+    color var(--transition), border-color var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.btn-outline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn-ghost {
+  color: var(--color-muted);
+}
+
+.btn-ghost:hover {
+  color: var(--color-accent);
+}
+
+/* Etiqueta tipo píldora para tecnologías */
+.tag {
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  color: var(--color-muted);
+}
+
+/* Insignia de estado (completado / en proceso / en curso) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.badge--completado {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+}
+
+.badge--en-proceso,
+.badge--en-curso {
+  color: var(--color-text);
+  background-color: var(--color-surface-2);
+}
+
+/* Enlace de saltar contenido (accesibilidad) */
+.skip-link {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-size: var(--step--1);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform var(--transition);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Aparición al hacer scroll (se activa con useReveal / IntersectionObserver)
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   Accesibilidad: respeta la preferencia de movimiento reducido
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

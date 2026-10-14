@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Perfil — una columna con titulares grandes + bloque de educación.
+   ========================================================================== */
+
+.perfil {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+}
+
+.perfil-titulo {
+  margin-top: var(--space-3);
+  max-width: 14ch;
+}
+
+.perfil-texto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.perfil-parrafo {
+  max-width: 65ch;
+  color: var(--color-muted);
+}
+
+.perfil-parrafo--destacado {
+  font-size: var(--step-1);
+  color: var(--color-text);
+}
+
+.perfil-educacion {
+  border-top: var(--border-width-strong) solid var(--color-accent);
+  padding-top: var(--space-5);
+}
+
+.perfil-subtitulo {
+  font-size: var(--step-1);
+  margin-bottom: var(--space-5);
+}
+
+.educacion-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.educacion-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.educacion-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.educacion-titulo {
+  font-size: var(--step-0);
+  font-weight: 600;
+}
+
+.educacion-institucion {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.educacion-detalle {
+  font-size: var(--step--1);
+  color: var(--color-muted);
+}
+
+.educacion-enlace {
+  margin-top: var(--space-2);
+  width: fit-content;
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--color-text);
+  border-bottom: var(--border-width) solid var(--color-accent);
+  transition: color var(--transition);
+}
+
+.educacion-enlace:hover {
+  color: var(--color-accent);
+}
+
+/* --- Escritorio: texto a la izquierda, educación a la derecha --- */
+@media (min-width: 60rem) {
+  .perfil {
+    grid-template-columns: 1.5fr 1fr;
+    align-items: start;
+  }
+
+  .perfil-encabezado,
+  .perfil-texto {
+    grid-column: 1;
+  }
+
+  .perfil-educacion {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
