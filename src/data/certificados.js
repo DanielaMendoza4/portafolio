@@ -16,6 +16,6 @@ export const certificados = [
       'Curso de administración de sistemas Linux con Red Hat, completado como parte de mi formación en SENATI.',
     tecnologias: ['Linux', 'Red Hat', 'Administración de sistemas'],
     imagen: '/certificados/red-hat-rh124.png',
-    url: '/certificados/red-hat-rh124.png',
+    url: 'https://www.linkedin.com/in/daniela-mendoza-pic%C3%B3n-860543375/',
   },
 ];
