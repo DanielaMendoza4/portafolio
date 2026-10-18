@@ -49,7 +49,7 @@ export const perfil = {
     {
       titulo: 'Certificación en Desarrollo Web Frontend',
       institucion: 'SENATI',
-      estado: 'Completado',
+      estado: 'En curso',
       detalle: 'HTML5, CSS3 y JavaScript',
       certificadoUrl: 'https://www.senati.edu.pe/',
     },

@@ -24,7 +24,7 @@
 }
 
 .proyecto-media {
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -34,12 +34,115 @@
 .proyecto-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: var(--space-3);
+  box-sizing: border-box;
+  background-color: var(--color-surface-2);
+}
+
+/* Carrusel */
+.carrusel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carrusel-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carrusel-track {
+  display: flex;
+  height: 100%;
   transition: transform 0.6s ease;
 }
 
-.proyecto:hover .proyecto-media img {
-  transform: scale(1.05);
+.carrusel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.carrusel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: var(--space-3);
+  box-sizing: border-box;
+  background-color: var(--color-surface-2);
+}
+
+.carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: var(--border-width) solid var(--color-border);
+  background-color: var(--color-surface-translucent);
+  color: var(--color-text);
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition);
+  z-index: 2;
+}
+
+.carrusel-flecha:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.carrusel-flecha--anterior {
+  left: var(--space-2);
+}
+
+.carrusel-flecha--siguiente {
+  right: var(--space-2);
+}
+
+.carrusel-indicadores {
+  position: absolute;
+  bottom: var(--space-2);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 2;
+}
+
+.carrusel-punto {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: var(--border-width) solid var(--color-border);
+  background-color: var(--color-surface-translucent);
+  transition: background-color var(--transition), border-color var(--transition),
+    transform var(--transition);
+}
+
+.carrusel-punto.activo {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel-track {
+    transition: none;
+  }
 }
 
 /* Marcador de posición cuando el proyecto no tiene imagen */

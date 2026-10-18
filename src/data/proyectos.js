@@ -1,5 +1,12 @@
 import imgInvernadero from '../assets/demo-invernadero.png';
 import imgBoutique from '../assets/boutique.png';
+import imgBoutiqueAdmin from '../assets/admin-boutique.png';
+import imgBoutiqueCarrito from '../assets/carrito-boutique.png';
+import imgBoutiqueComprar from '../assets/comprar-boutique.png';
+import imgBoutiqueIniciar from '../assets/iniciar-boutique.jpeg';
+import imgBoutiqueProducto from '../assets/producto-boutique.png';
+import imgBoutiqueUsuario from '../assets/usuario-boutique.png';
+import imgBasket from '../assets/basket.jpeg';
 
 // Proyectos del portafolio. El componente los recorre con .map().
 // - "estado": 'completado' | 'en proceso'  (se muestra como insignia)
@@ -11,14 +18,20 @@ import imgBoutique from '../assets/boutique.png';
 
 export const proyectos = [
   {
-    titulo: 'Panel de Inventario',
+    titulo: 'SOFI-WEB, Frontend',
     descripcion:
-      'Aplicación web para registrar, editar y buscar productos de un inventario, con filtros por categoría y persistencia local. Diseñada con enfoque mobile-first.',
-    tecnologias: ['React', 'JavaScript', 'CSS', 'LocalStorage'],
-    demoUrl: 'https://example.com/panel-inventario',
-    codigoUrl: 'https://github.com/tu-usuario/panel-inventario',
-    imagen: null,
-    estado: 'completado',
+      'Proyecto de colaboración en equipo dentro de mi empresa, en el que aporto en el frontend. Trabajo en el rediseño visual (tema oscuro, tipografía y dashboard), en una arquitectura modular por features y en componentes reutilizables como las tablas de datos. Usamos desarrollo guiado por especificaciones con OpenSpec.',
+    tecnologias: ['Frontend', 'Arquitectura modular', 'OpenSpec', 'Trabajo en equipo'],
+    demoUrl: '',
+    codigoUrl: '',
+    repoPrivado: true,
+    imagenes: [
+      { src: '/proyectos/sofi-web.jpeg', alt: 'Pantalla de inicio de sesión de SOFI-WEB' },
+      { src: '/proyectos/sofi-web-dashboard.jpeg', alt: 'Dashboard principal de SOFI-WEB' },
+      { src: '/proyectos/sofi-web-calendario.jpeg', alt: 'Vista de calendario de SOFI-WEB' },
+      { src: '/proyectos/sofi-web-cursos.jpeg', alt: 'Vista de cursos de SOFI-WEB' },
+    ],
+    estado: 'en proceso · 80%',
   },
   {
     titulo: 'Invernadero Inteligente con Energía Solar',
@@ -37,27 +50,25 @@ export const proyectos = [
     tecnologias: ['PHP', 'MySQL', 'Bootstrap', 'MVC'],
     demoUrl: '',
     codigoUrl: 'https://github.com/DanielaMendoza4/boutique-sd',
-    imagen: imgBoutique,
+    imagenes: [
+      { src: imgBoutique, alt: 'Portada de la tienda online Boutique S&D' },
+      { src: imgBoutiqueIniciar, alt: 'Pantalla de inicio de sesión de Boutique S&D' },
+      { src: imgBoutiqueProducto, alt: 'Catálogo de productos de Boutique S&D' },
+      { src: imgBoutiqueComprar, alt: 'Proceso de compra en Boutique S&D' },
+      { src: imgBoutiqueCarrito, alt: 'Carrito de compras de Boutique S&D' },
+      { src: imgBoutiqueAdmin, alt: 'Panel de administrador de Boutique S&D' },
+      { src: imgBoutiqueUsuario, alt: 'Gestión de usuarios en Boutique S&D' },
+    ],
     estado: 'completado',
   },
   {
-    titulo: 'Sistema de Monitoreo IoT',
+    titulo: 'Marcador de Canasta con Arduino',
     descripcion:
-      'Estación que mide temperatura y humedad con sensores conectados a un ESP32 y envía los datos a un panel web en tiempo real.',
-    tecnologias: ['Arduino', 'ESP32', 'C++', 'Node.js'],
-    demoUrl: 'https://example.com/monitoreo-iot',
-    codigoUrl: 'https://github.com/tu-usuario/monitoreo-iot',
-    imagen: null,
-    estado: 'completado',
-  },
-  {
-    titulo: 'Analizador de Datos Académicos',
-    descripcion:
-      'Script que limpia y analiza datos de calificaciones desde una base de datos SQL y genera gráficos para detectar tendencias por curso.',
-    tecnologias: ['Python', 'SQL', 'Pandas', 'Matplotlib'],
-    demoUrl: '',
-    codigoUrl: 'https://github.com/tu-usuario/analizador-datos',
-    imagen: null,
+      'Simulación en Tinkercad de un marcador electrónico para un juego de canasta. Un sensor ultrasónico detecta la entrada del balón, el Arduino suma los puntos en una pantalla LCD 16x2 y se acompaña con señales de luz (LED) y sonido (buzzer).',
+    tecnologias: ['Arduino', 'Tinkercad', 'Sensor ultrasónico', 'IoT'],
+    demoUrl: 'https://www.tinkercad.com/things/8TwVYPi3ooC-marcador-de-canasta-con-arduino?sharecode=CJK8f9rHa5YOmkpERY74e2rcJVESL-9X3Qw_7dMve54',
+    codigoUrl: '',
+    imagen: imgBasket,
     estado: 'completado',
   },
 ];

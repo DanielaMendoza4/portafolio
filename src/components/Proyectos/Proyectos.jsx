@@ -1,5 +1,6 @@
 import { proyectos } from '../../data/proyectos';
 import { useReveal } from '../../hooks/useReveal';
+import Carrusel from './Carrusel';
 import './Proyectos.css';
 
 const normalizarEstado = (estado) => estado.toLowerCase().replace(/\s+/g, '-');
@@ -25,7 +26,9 @@ const Proyectos = () => {
           {proyectos.map((proyecto, indice) => (
             <li key={proyecto.titulo} className="proyecto">
               <div className="proyecto-media">
-                {proyecto.imagen ? (
+                {proyecto.imagenes && proyecto.imagenes.length > 0 ? (
+                  <Carrusel imagenes={proyecto.imagenes} />
+                ) : proyecto.imagen ? (
                   <img src={proyecto.imagen} alt={`Vista del proyecto ${proyecto.titulo}`} />
                 ) : (
                   <div className="proyecto-placeholder" aria-hidden="true">
@@ -76,6 +79,12 @@ const Proyectos = () => {
                     >
                       Código
                     </a>
+                  ) : null}
+
+                  {proyecto.repoPrivado ? (
+                    <span className="tag" aria-label="Repositorio privado">
+                      Repositorio privado
+                    </span>
                   ) : null}
                 </div>
               </div>
