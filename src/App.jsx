@@ -4,6 +4,7 @@ import Banner from './components/Banner/Banner';
 import Perfil from './components/Perfil/Perfil';
 import Habilidades from './components/Habilidades/Habilidades';
 import Proyectos from './components/Proyectos/Proyectos';
+import Certificados from './components/Certificados/Certificados';
 import Contacto from './components/Contacto/Contacto';
 import Footer from './components/Footer/Footer';
 import './index.css';
@@ -48,6 +49,7 @@ function App() {
         <Perfil />
         <Habilidades />
         <Proyectos />
+        <Certificados />
         <Contacto />
       </main>
 

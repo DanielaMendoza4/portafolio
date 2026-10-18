@@ -2,7 +2,7 @@
 // Reemplaza el texto de muestra por tu información real.
 
 // La foto vive en src/assets/miFoto.png (Vite la procesa al importarla).
-import miFoto from '../assets/miFoto.png';
+import miFoto from '../assets/miFoto.jpeg';
 
 export const perfil = {
   nombre: 'Daniela',
@@ -42,8 +42,8 @@ export const perfil = {
     {
       titulo: 'Inglés Técnico para Tecnología',
       institucion: 'SENATI',
-      estado: 'Completado',
-      detalle: 'Lectura de documentación técnica y comunicación básica',
+      estado: 'En curso',
+      detalle: 'Comprensión de textos',
       certificadoUrl: '',
     },
     {

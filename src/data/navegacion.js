@@ -5,5 +5,6 @@ export const navegacion = [
   { id: 'sobre-mi', etiqueta: 'Perfil' },
   { id: 'tech-stack', etiqueta: 'Habilidades' },
   { id: 'proyectos', etiqueta: 'Proyectos' },
+  { id: 'certificados', etiqueta: 'Certificados' },
   { id: 'contacto', etiqueta: 'Contacto' },
 ];

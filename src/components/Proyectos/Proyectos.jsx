@@ -48,7 +48,7 @@ const Proyectos = () => {
 
                 {/* Tags de tecnologías (mapeo anidado) */}
                 <ul className="proyecto-tags">
-                  {proyecto.tecnologias.map((tecnologia) => (
+                  {(proyecto.tecnologias ?? []).map((tecnologia) => (
                     <li key={tecnologia} className="tag">
                       {tecnologia}
                     </li>

@@ -1,3 +1,6 @@
+import imgInvernadero from '../assets/demo-invernadero.png';
+import imgBoutique from '../assets/boutique.png';
+
 // Proyectos del portafolio. El componente los recorre con .map().
 // - "estado": 'completado' | 'en proceso'  (se muestra como insignia)
 // - "demoUrl" / "codigoUrl": si están vacíos, ese botón no se muestra.
@@ -18,14 +21,24 @@ export const proyectos = [
     estado: 'completado',
   },
   {
-    titulo: 'Asistente de Estudio con IA',
+    titulo: 'Invernadero Inteligente con Energía Solar',
     descripcion:
-      'Prototipo que resume apuntes y genera preguntas de repaso a partir de un texto. Estoy integrando un modelo de lenguaje y una interfaz de chat.',
-    tecnologias: ['React', 'Python', 'FastAPI', 'IA'],
+      'Simulación en Tinkercad de un invernadero automatizado que monitorea las condiciones del ambiente y gestiona el consumo de energía a partir de un sistema solar. Diseñado como solución IoT para optimizar recursos.',
+    tecnologias: ['Tinkercad', 'Arduino', 'IoT'],
+    demoUrl: 'https://www.tinkercad.com/things/l27VzAtDYms-sistema-de-invernadero-inteligente-gestion-de-energia-solar?sharecode=N1sBbSQ0buSeLHL1pCbl91XkzYEcqGNoG_eCxDHVHi8',
+
+    imagen: imgInvernadero,
+    estado: 'completado',
+  },
+  {
+    titulo: 'Boutique S&D, Tienda Online',
+    descripcion:
+      'Tienda online de ropa con catálogo de productos, registro e inicio de sesión, y carrito de compras. Incluye un panel de administrador con roles para gestionar productos y usuarios.',
+    tecnologias: ['PHP', 'MySQL', 'Bootstrap', 'MVC'],
     demoUrl: '',
-    codigoUrl: 'https://github.com/tu-usuario/asistente-estudio',
-    imagen: null,
-    estado: 'en proceso',
+    codigoUrl: 'https://github.com/DanielaMendoza4/boutique-sd',
+    imagen: imgBoutique,
+    estado: 'completado',
   },
   {
     titulo: 'Sistema de Monitoreo IoT',
