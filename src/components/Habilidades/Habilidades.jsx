@@ -29,7 +29,7 @@ const Habilidades = () => {
                   <li key={skill.nombre} className="habilidad-item">
                     <div className="habilidad-fila">
                       <span className="habilidad-nombre">{skill.nombre}</span>
-                      <span className="habilidad-nivel">{skill.nivel}%</span>
+                     
                     </div>
 
                     {/* Barra de nivel nativa, sin estilos inline */}
