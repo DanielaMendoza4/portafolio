@@ -1,52 +1,61 @@
-import { categoriasSkills } from '../../data/skills';
+import { useState } from 'react';
+import { areas, habilidades } from '../../data/habilidades';
 import { useReveal } from '../../hooks/useReveal';
 import './Habilidades.css';
 
-// Sección de habilidades: agrupadas por categoría con barras de nivel.
+// Sección de habilidades: tarjetas con logo + nombre, filtradas por área.
 const Habilidades = () => {
   const ref = useReveal();
+  const [areaActiva, setAreaActiva] = useState(areas[0]);
+
+  const visibles =
+    areaActiva === areas[0]
+      ? habilidades
+      : habilidades.filter((habilidad) => habilidad.area === areaActiva);
 
   return (
-    <section id="tech-stack" className="section reveal" ref={ref}>
+    <section id="tech-stack" className="section reveal habilidades" ref={ref}>
       <div className="container">
         <header className="habilidades-encabezado">
           <p className="section-eyebrow">Tech stack</p>
           <h2 className="section-title">Habilidades por área</h2>
           <p className="section-lead">
-            Las herramientas y tecnologías que uso para construir proyectos, organizadas por área
-            y con un nivel de dominio estimado.
+            Las tecnologías con las que construyo proyectos, filtradas por área.
           </p>
         </header>
 
-        <div className="habilidades-grid">
-          {categoriasSkills.map((grupo) => (
-            <article key={grupo.categoria} className="habilidad-grupo">
-              <h3 className="habilidad-categoria">{grupo.categoria}</h3>
-              <p className="habilidad-grupo-descripcion">{grupo.descripcion}</p>
-
-              <ul className="habilidad-lista">
-                {grupo.skills.map((skill) => (
-                  <li key={skill.nombre} className="habilidad-item">
-                    <div className="habilidad-fila">
-                      <span className="habilidad-nombre">{skill.nombre}</span>
-                     
-                    </div>
-
-                    {/* Barra de nivel nativa, sin estilos inline */}
-                    <progress
-                      className="habilidad-barra"
-                      value={skill.nivel}
-                      max="100"
-                      aria-label={`Nivel de ${skill.nombre}: ${skill.nivel} por ciento`}
-                    />
-
-                    <p className="habilidad-descripcion">{skill.descripcion}</p>
-                  </li>
-                ))}
-              </ul>
-            </article>
+        <div className="habilidades-tabs" role="tablist" aria-label="Filtrar habilidades por área">
+          {areas.map((area) => (
+            <button
+              key={area}
+              id={`habilidades-tab-${area.toLowerCase().replace(/\s+/g, '-')}`}
+              type="button"
+              role="tab"
+              aria-selected={area === areaActiva}
+              aria-controls="habilidades-panel"
+              className="habilidades-tab"
+              onClick={() => setAreaActiva(area)}
+            >
+              {area}
+            </button>
           ))}
         </div>
+
+        <ul
+          id="habilidades-panel"
+          role="tabpanel"
+          aria-labelledby={`habilidades-tab-${areaActiva.toLowerCase().replace(/\s+/g, '-')}`}
+          className="habilidades-grid"
+        >
+          {visibles.map(({ nombre, icono: Icono, color }) => (
+            <li key={nombre} className="habilidad" style={{ '--brand': color }}>
+              <span className="habilidad-icono" aria-hidden="true">
+                <Icono focusable="false" />
+              </span>
+              <span className="habilidad-nombre">{nombre}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

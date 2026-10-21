@@ -20,11 +20,16 @@ export const perfil = {
   descripcionCorta:
     'Diseño y construyo interfaces web claras, accesibles y responsive, y me interesa unir el desarrollo frontend con la inteligencia artificial y el Internet de las Cosas. Estudio el quinto semestre de Ingeniería de Software con IA en SENATI.',
 
-  // Tres párrafos del perfil profesional
-  parrafos: [
-    'Soy Daniela del Carmen Mendoza Jaimes, estudiante de Ingeniería de Software con Inteligencia Artificial en SENATI, sede Independencia (Lima). A lo largo de la carrera descubrí que lo que más disfruto es transformar ideas en interfaces que se sientan simples, ordenadas y fáciles de usar, cuidando cada detalle visual y de accesibilidad.',
-    'Complementé mi formación con certificaciones y cursos enfocados en desarrollo web frontend, bases de datos y fundamentos de inteligencia artificial. Esos estudios me dieron una base sólida para trabajar con metodologías de control de versiones, buenas prácticas de código y trabajo colaborativo en equipo.',
-    'En el día a día trabajo con React y JavaScript moderno para el frontend, HTML y CSS para maquetación responsive, Git y GitHub para el control de versiones, SQL para el manejo de datos y Python para automatizaciones. También exploro proyectos de IoT con Arduino y ESP32 para conectar software y hardware.',
+  // Párrafo único del perfil profesional (máximo 3–4 líneas).
+  resumen:
+    'Me gusta transformar ideas en interfaces simples, ordenadas y accesibles, cuidando cada detalle visual. Complemento mi formación con cursos de frontend, bases de datos e IA, y trabajo con control de versiones y buenas prácticas de código en equipo.',
+
+  // Datos rápidos escaneables que se muestran bajo el párrafo.
+  // Formato "cifra + etiqueta": el componente solo los recorre con map.
+  datosRapidos: [
+    { cifra: 'V', etiqueta: 'Semestre en curso' },
+    { cifra: 'Frontend + IoT', etiqueta: 'Áreas de interés' },
+    { cifra: 'Git y GitHub', etiqueta: 'Control de versiones' },
   ],
 
   foto: miFoto,

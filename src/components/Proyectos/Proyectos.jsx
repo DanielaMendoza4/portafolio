@@ -3,7 +3,7 @@ import { useReveal } from '../../hooks/useReveal';
 import Carrusel from './Carrusel';
 import './Proyectos.css';
 
-const normalizarEstado = (estado) => estado.toLowerCase().replace(/\s+/g, '-');
+const normalizarEstado = (estado) => (estado ?? '').toLowerCase().replace(/\s+/g, '-');
 const numeroProyecto = (indice) => String(indice + 1).padStart(2, '0');
 
 // Sección de proyectos: filas alternadas imagen/texto con hover.
@@ -41,9 +41,11 @@ const Proyectos = () => {
               <div className="proyecto-info">
                 <div className="proyecto-meta">
                   <span className="proyecto-indice">{numeroProyecto(indice)}</span>
-                  <span className={`badge badge--${normalizarEstado(proyecto.estado)}`}>
-                    {proyecto.estado}
-                  </span>
+                  {proyecto.estado ? (
+                    <span className={`badge badge--${normalizarEstado(proyecto.estado)}`}>
+                      {proyecto.estado}
+                    </span>
+                  ) : null}
                 </div>
 
                 <h3 className="proyecto-titulo">{proyecto.titulo}</h3>
@@ -78,6 +80,17 @@ const Proyectos = () => {
                       rel="noopener noreferrer"
                     >
                       Código
+                    </a>
+                  ) : null}
+
+                  {proyecto.apkUrl ? (
+                    <a
+                      className="btn btn-outline"
+                      href={proyecto.apkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Descargar APK
                     </a>
                   ) : null}
 

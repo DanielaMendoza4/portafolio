@@ -1,99 +1,136 @@
 /* ==========================================================================
-   Habilidades — grupos por categoría con barras de nivel.
+   Habilidades — tarjetas con logo + nombre y filtro por área (pestañas).
+   Los colores usan variables globales con valores por defecto para heredar
+   el tema del portafolio (index.css) sin depender de él.
    ========================================================================== */
+
+/* Sincroniza light-dark() del color de marca con el tema (data-theme). */
+.habilidades {
+  color-scheme: light;
+}
+
+[data-theme='dark'] .habilidades {
+  color-scheme: dark;
+}
 
 .habilidades-encabezado {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  margin-bottom: var(--space-7);
+  gap: var(--space-3, 0.75rem);
+  margin-bottom: var(--space-5, 1.5rem);
 }
+
+/* --- Pestañas tipo píldora ---------------------------------------------- */
+
+.habilidades-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  margin-bottom: var(--space-6, 2rem);
+}
+
+.habilidades-tab {
+  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+  border: var(--border-width, 1px) solid var(--color-border, rgba(0, 0, 0, 0.12));
+  border-radius: var(--radius-pill, 999px);
+  background-color: var(--color-surface, #fff);
+  font-size: var(--step--1, 0.9rem);
+  font-weight: 600;
+  color: var(--color-muted, #6f675c);
+  transition:
+    color var(--transition, 0.25s ease),
+    border-color var(--transition, 0.25s ease),
+    background-color var(--transition, 0.25s ease);
+}
+
+.habilidades-tab:not([aria-selected='true']):hover {
+  color: var(--color-accent, #d2542f);
+  border-color: var(--color-accent, #d2542f);
+}
+
+.habilidades-tab[aria-selected='true'] {
+  background-color: var(--color-accent, #d2542f);
+  border-color: var(--color-accent, #d2542f);
+  color: var(--color-accent-contrast, #fff);
+}
+
+/* --- Grid de tarjetas ---------------------------------------------------- */
 
 .habilidades-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
-.habilidad-grupo {
+.habilidad {
+  /* Color de marca de la tecnología (inyectado desde los datos). */
+  --brand: var(--color-accent, #d2542f);
+
   display: flex;
   flex-direction: column;
-  padding: var(--space-5);
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-surface);
-  transition: border-color var(--transition), transform var(--transition);
+  align-items: center;
+  gap: var(--space-3, 0.75rem);
+  padding: clamp(1rem, 3vw, 1.75rem) var(--space-3, 0.75rem);
+  border: var(--border-width, 1px) solid var(--color-border, rgba(0, 0, 0, 0.12));
+  border-radius: var(--radius-md, 0.9rem);
+  background-color: var(--color-surface, #fff);
+  text-align: center;
+  transition:
+    transform var(--transition, 0.25s ease),
+    border-color var(--transition, 0.25s ease),
+    box-shadow var(--transition, 0.25s ease);
 }
 
-.habilidad-grupo:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
+.habilidad-icono {
+  display: grid;
+  place-items: center;
+  color: var(--color-muted, #6f675c);
+  transition: color var(--transition, 0.25s ease);
 }
 
-.habilidad-categoria {
-  font-size: var(--step-1);
-}
-
-.habilidad-grupo-descripcion {
-  margin-top: var(--space-1);
-  margin-bottom: var(--space-4);
-  font-size: var(--step--1);
-  color: var(--color-muted);
-}
-
-.habilidad-lista {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.habilidad-fila {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
+.habilidad-icono svg {
+  width: clamp(2rem, 8vw, 2.75rem);
+  height: auto;
 }
 
 .habilidad-nombre {
+  font-size: var(--step--1, 0.9rem);
   font-weight: 600;
+  color: var(--color-text, #16130f);
+  overflow-wrap: anywhere;
 }
 
-.habilidad-nivel {
-  font-size: var(--step--1);
-  color: var(--color-accent);
-  font-variant-numeric: tabular-nums;
+/* Hover (y foco por teclado): sube, se ilumina el borde y pinta el logo. */
+.habilidad:hover,
+.habilidad:focus-within {
+  transform: translateY(-0.35rem);
+  border-color: var(--brand);
+  box-shadow: 0 0.75rem 1.5rem -0.875rem color-mix(in srgb, var(--brand) 65%, transparent);
 }
 
-/* Barra de nivel (elemento <progress>) estilizada con variables */
-.habilidad-barra {
-  width: 100%;
-  height: var(--space-2);
-  margin-top: var(--space-2);
-  border: none;
-  border-radius: var(--radius-pill);
-  overflow: hidden;
-  background-color: var(--color-surface-2);
-  appearance: none;
-  -webkit-appearance: none;
+.habilidad:hover .habilidad-icono,
+.habilidad:focus-within .habilidad-icono {
+  color: var(--brand);
 }
 
-.habilidad-barra::-webkit-progress-bar {
-  background-color: var(--color-surface-2);
-  border-radius: var(--radius-pill);
+/* Pantallas sin hover (celular/tablet táctil): logos a color desde el inicio. */
+@media (hover: none) {
+  .habilidad-icono {
+    color: var(--brand);
+  }
 }
 
-.habilidad-barra::-webkit-progress-value {
-  background-color: var(--color-accent);
-  border-radius: var(--radius-pill);
-}
+/* --- Accesibilidad: movimiento reducido --------------------------------- */
 
-.habilidad-barra::-moz-progress-bar {
-  background-color: var(--color-accent);
-  border-radius: var(--radius-pill);
-}
+@media (prefers-reduced-motion: reduce) {
+  .habilidades-tab,
+  .habilidad,
+  .habilidad-icono {
+    transition: none;
+  }
 
-.habilidad-descripcion {
-  margin-top: var(--space-2);
-  font-size: var(--step--1);
-  color: var(--color-muted);
+  .habilidad:hover,
+  .habilidad:focus-within {
+    transform: none;
+  }
 }

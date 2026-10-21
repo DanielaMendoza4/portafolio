@@ -4,20 +4,22 @@
 // - "imagen": captura del certificado, importada desde src/assets.
 //   Si queda vacía, se muestra un marcador de posición con CSS.
 // - "url": enlace para abrir el documento. Si queda vacío, el botón no se muestra.
+// El orden no importa: el export los ordena automáticamente por fecha,
+// de menor a mayor.
 
-import imgRedHat from '../assets/red-hat-rh124.png';
-import imgEntrepreneurship from '../assets/Entrepre.jpg';
-import imgGetConnected from '../assets/connect.jpg';
-import imgCybersecurity from '../assets/Cibersegurity.jpg';
-import imgIoT from '../assets/IoT.jpg';
-import imgNetworking from '../assets/networking.jpg';
-import imgPython from '../assets/Partner.jpg';
-import imgJavaFundamentals from '../assets/Fundamentals.jpg';
-import imgJavaFoundations from '../assets/Foundations.jpg';
-import imgDatabaseSql from '../assets/Programming.jpg';
-import imgDatabaseDesign from '../assets/Database_design.jpg';
+import imgRedHat from '../assets/certificaciones/red-hat-rh124.png';
+import imgEntrepreneurship from '../assets/certificaciones/Entrepre.jpg';
+import imgGetConnected from '../assets/certificaciones/connect.jpg';
+import imgCybersecurity from '../assets/certificaciones/Cibersegurity.jpg';
+import imgIoT from '../assets/certificaciones/IoT.jpg';
+import imgNetworking from '../assets/certificaciones/networking.jpg';
+import imgPython from '../assets/certificaciones/Partner.jpg';
+import imgJavaFundamentals from '../assets/certificaciones/Fundamentals.jpg';
+import imgJavaFoundations from '../assets/certificaciones/Foundations.jpg';
+import imgDatabaseSql from '../assets/certificaciones/Programming.jpg';
+import imgDatabaseDesign from '../assets/certificaciones/Database_design.jpg';
 
-export const certificados = [
+const certificadosBase = [
   {
     titulo: 'Red Hat System Administration I (RH124)',
     tipo: 'Certificado de asistencia',
@@ -151,3 +153,34 @@ export const certificados = [
     url: '/certificados/Database_Design.pdf',
   },
 ];
+
+// Meses en español para parsear fechas como '2 de junio de 2024'.
+const MESES = {
+  enero: 0,
+  febrero: 1,
+  marzo: 2,
+  abril: 3,
+  mayo: 4,
+  junio: 5,
+  julio: 6,
+  agosto: 7,
+  septiembre: 8,
+  octubre: 9,
+  noviembre: 10,
+  diciembre: 11,
+};
+
+// Convierte una fecha en español a timestamp comparable.
+// Si la fecha falta o no se reconoce, retorna 0 (queda al inicio).
+const aTimestamp = (fecha) => {
+  const partes = (fecha ?? '').match(/(\d{1,2}) de (\w+) de (\d{4})/);
+  if (!partes) return 0;
+  const [, dia, mes, anio] = partes;
+  return Date.UTC(Number(anio), MESES[mes.toLowerCase()] ?? 0, Number(dia));
+};
+
+// Se exporta ordenado de menor a mayor (sort estable: los empates
+// conservan el orden de inserción del array base).
+export const certificados = [...certificadosBase].sort(
+  (a, b) => aTimestamp(a.fecha) - aTimestamp(b.fecha),
+);

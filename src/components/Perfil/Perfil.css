@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Perfil — una columna con titulares grandes + bloque de educación.
+   Perfil — párrafo breve + datos rápidos a la izquierda, educación a la derecha.
    ========================================================================== */
 
 .perfil {
@@ -16,27 +16,65 @@
 .perfil-texto {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 
-.perfil-parrafo {
-  max-width: 65ch;
+/* Párrafo único: tamaño intermedio, cómodo de leer, sin alargarse. */
+.perfil-resumen {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  line-height: 1.7;
+  max-width: 60ch;
+  color: var(--color-text);
+}
+
+/* --- Datos rápidos: cifra + etiqueta ------------------------------------ */
+
+.perfil-datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: var(--space-4);
+  border-top: var(--border-width) solid var(--color-border);
+  padding-top: var(--space-5);
+}
+
+.perfil-dato {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.perfil-dato-cifra {
+  font-family: var(--font-title);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-accent);
+}
+
+.perfil-dato-etiqueta {
+  font-size: var(--step--1);
   color: var(--color-muted);
 }
 
-.perfil-parrafo--destacado {
-  font-size: var(--step-1);
-  color: var(--color-text);
-}
+/* --- Educación y certificaciones ---------------------------------------- */
 
 .perfil-educacion {
   border-top: var(--border-width-strong) solid var(--color-accent);
   padding-top: var(--space-5);
 }
 
+.perfil-educacion-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
 .perfil-subtitulo {
   font-size: var(--step-1);
-  margin-bottom: var(--space-5);
+  margin: 0;
 }
 
 .educacion-lista {
@@ -52,15 +90,17 @@
   border-bottom: var(--border-width) solid var(--color-border);
 }
 
+/* Título y badge: el badge siempre alineado a la derecha del título. */
 .educacion-cabecera {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-2);
+  gap: var(--space-2) var(--space-3);
 }
 
 .educacion-titulo {
+  flex: 1 1 auto;
   font-size: var(--step-0);
   font-weight: 600;
 }

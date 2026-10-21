@@ -9,17 +9,25 @@
   --font-title: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  /* --- Colores · Modo claro --- */
-  --color-bg: #f7f4ef;
-  --color-surface: #ffffff;
-  --color-surface-2: #efeae1;
-  --color-surface-translucent: rgba(255, 255, 255, 0.85);
-  --color-text: #16130f;
-  --color-muted: #6f675c;
-  --color-accent: #d2542f;
-  --color-accent-contrast: #ffffff;
-  --color-accent-soft: rgba(210, 84, 47, 0.12);
-  --color-border: rgba(22, 19, 15, 0.12);
+  /* --- Colores · Modo oscuro (tema por defecto) --- */
+  --bg: #14110f;
+  --card: #1d1916;
+  --border: #3a322c;
+  --text: #f3ece6;
+  --muted: #b8aca2;
+  --accent: #e8714a;
+
+  /* Alias que consumen los componentes (mismos nombres de antes). */
+  --color-bg: var(--bg);
+  --color-surface: var(--card);
+  --color-surface-2: #262019;
+  --color-surface-translucent: rgba(29, 25, 22, 0.85);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: #1a1410;
+  --color-accent-soft: rgba(232, 113, 74, 0.16);
+  --color-border: var(--border);
 
   /* --- Espaciado fluido (escala 1–8) --- */
   --space-1: 0.25rem;
@@ -58,21 +66,31 @@
   --transition: 0.25s ease;
 }
 
-/* --- Colores · Modo oscuro --- */
-[data-theme='dark'] {
-  --color-bg: #14110e;
-  --color-surface: #1d1915;
-  --color-surface-2: #262019;
-  --color-surface-translucent: rgba(29, 25, 21, 0.85);
-  --color-text: #f4efe7;
-  --color-muted: #a89e8f;
-  --color-accent: #e8764f;
-  --color-accent-contrast: #1a1410;
-  --color-accent-soft: rgba(232, 118, 79, 0.16);
-  --color-border: rgba(244, 239, 231, 0.14);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 12px 30px -12px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 30px 60px -25px rgba(0, 0, 0, 0.7);
+/* --- Colores · Modo claro --- */
+:root[data-theme='light'] {
+  --bg: #faf6f1;
+  --card: #ffffff;
+  --border: #e6ddd3;
+  --text: #2a211b;
+  --muted: #6b5d52;
+  /* Ligeramente más oscuro que el acento "de marca" para superar 4.5:1
+     sobre el fondo claro sin alterar la identidad terracota. */
+  --accent: #bd4a26;
+
+  /* Alias coherentes con el modo claro. */
+  --color-bg: var(--bg);
+  --color-surface: var(--card);
+  --color-surface-2: #efeae1;
+  --color-surface-translucent: rgba(255, 255, 255, 0.85);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: rgba(194, 81, 42, 0.12);
+  --color-border: var(--border);
+  --shadow-sm: 0 1px 2px rgba(42, 33, 27, 0.06);
+  --shadow-md: 0 12px 30px -12px rgba(42, 33, 27, 0.25);
+  --shadow-lg: 0 30px 60px -25px rgba(42, 33, 27, 0.35);
 }
 
 /* ==========================================================================
