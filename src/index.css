@@ -16,6 +16,9 @@
   --text: #f3ece6;
   --muted: #b8aca2;
   --accent: #e8714a;
+  /* Rojo cálido de la misma familia que el terracota: se usa en alertas
+     de error para no introducir azules ajenos a la paleta. */
+  --danger: #e2584f;
 
   /* Alias que consumen los componentes (mismos nombres de antes). */
   --color-bg: var(--bg);
@@ -28,6 +31,7 @@
   --color-accent-contrast: #1a1410;
   --color-accent-soft: rgba(232, 113, 74, 0.16);
   --color-border: var(--border);
+  --color-danger: var(--danger);
 
   /* --- Espaciado fluido (escala 1–8) --- */
   --space-1: 0.25rem;
@@ -76,6 +80,8 @@
   /* Ligeramente más oscuro que el acento "de marca" para superar 4.5:1
      sobre el fondo claro sin alterar la identidad terracota. */
   --accent: #bd4a26;
+  /* Mismo criterio de contraste que el acento, sobre superficie clara. */
+  --danger: #c0392b;
 
   /* Alias coherentes con el modo claro. */
   --color-bg: var(--bg);
@@ -88,6 +94,7 @@
   --color-accent-contrast: #ffffff;
   --color-accent-soft: rgba(194, 81, 42, 0.12);
   --color-border: var(--border);
+  --color-danger: var(--danger);
   --shadow-sm: 0 1px 2px rgba(42, 33, 27, 0.06);
   --shadow-md: 0 12px 30px -12px rgba(42, 33, 27, 0.25);
   --shadow-lg: 0 30px 60px -25px rgba(42, 33, 27, 0.35);
@@ -307,6 +314,38 @@ h4 {
 
 .skip-link:focus {
   transform: translateY(0);
+}
+
+/* ==========================================================================
+   Alertas de SweetAlert2
+   Se montan fuera del árbol de la app (en <body>), por eso viven aquí y no
+   en el CSS del componente. Los colores salen de las variables del tema, así
+   que la alerta respeta el modo claro/oscuro sin duplicar paletas.
+   ========================================================================== */
+
+/* El popup recibe la clase "alerta-portafolio" vía customClass. */
+.alerta-portafolio {
+  /* API de variables CSS de SweetAlert2: se aplican al popup y las heredan
+     sus hijos (botones, título, contenedor de texto). */
+  --swal2-border: var(--border-width) solid var(--color-border);
+  --swal2-border-radius: var(--radius-md);
+  --swal2-confirm-button-color: var(--color-accent-contrast);
+  --swal2-confirm-button-border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+}
+
+.alerta-portafolio .swal2-title {
+  font-family: var(--font-title);
+  color: inherit;
+}
+
+.alerta-portafolio .swal2-html-container {
+  font-family: var(--font-body);
+  color: var(--color-muted);
+}
+
+.alerta-portafolio .swal2-confirm-button {
+  font-weight: 600;
 }
 
 /* ==========================================================================
