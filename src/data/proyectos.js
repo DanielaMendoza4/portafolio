@@ -14,6 +14,9 @@ import imgMinimarketCarrito from '../assets/minimarket/carrito.png';
 import imgMinimarketDelivery from '../assets/minimarket/delivery.png';
 import imgMinimarketContacto from '../assets/minimarket/contacto.png';
 
+import imgEstantePortada from '../assets/estante/estante.png';
+import imgEstanteMonitor from '../assets/estante/monitor.png';
+
 import imgEcolimLogin from '../assets/ecolim/login-eco.jpeg';
 import imgEcolimRegistro from '../assets/ecolim/registro-eco.jpeg';
 import imgEcolimAdmin from '../assets/ecolim/admin-eco.jpeg';
@@ -101,6 +104,19 @@ export const proyectos = [
       { src: imgEcolimLogin, alt: 'Pantalla de inicio de sesión de ECOLIM' },
       { src: imgEcolimRegistro, alt: 'Registro de residuos con foto en ECOLIM' },
       { src: imgEcolimAdmin, alt: 'Panel de administración de ECOLIM' },
+    ],
+    estado: 'completado',
+  },
+  {
+    titulo: 'Sistema de Monitoreo y Alerta para Áreas Críticas (Zona Estante)',
+    descripcion:
+      'Sistema de alerta temprana simulado en Tinkercad para proteger estantes con equipos de alto valor. Un sensor ultrasónico HC-SR04 mide la distancia y, con el sistema armado, detecta aproximaciones a menos de 20 cm: enciende un LED rojo, activa un buzzer a 1000 Hz y mueve un servomotor que simula el cierre de una reja. Una pantalla LCD 16x2 muestra la distancia y el estado (NORMAL, ALARMA o DESARMADO), y el monitor serie registra cada evento con el formato EVT;ESTANTE;DISTANCIA;valor;estado, simulando el enlace con una central de monitoreo. Proyecto final grupal (5 integrantes) del curso Diseño y Desarrollo de Soluciones IoT de SENATI, donde fui la coordinadora del equipo.',
+    tecnologias: ['Tinkercad Circuits', 'Arduino Uno', 'C/C++', 'HC-SR04', 'LCD 16x2', 'Servomotor', 'IoT'],
+    demoUrl: 'https://www.tinkercad.com/things/3LffR4UseZs/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=oSY8yWEfRvuATorE6iCHFStzh5m00EVJtwGv2L3b6sk',
+    codigoUrl: '',
+    imagenes: [
+      { src: imgEstantePortada, alt: 'Circuito en Tinkercad con Arduino Uno, sensor ultrasónico, LCD y servomotor en estado de alarma' },
+      { src: imgEstanteMonitor, alt: 'Circuito en Tinkercad con Arduino Uno, sensor ultrasónico, LCD y servomotor en estado de alarma' },
     ],
     estado: 'completado',
   },
