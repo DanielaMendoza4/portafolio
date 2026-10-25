@@ -1,10 +1,20 @@
 import { proyectos } from '../../data/proyectos';
 import { useReveal } from '../../hooks/useReveal';
-import Carrusel from './Carrusel';
+import Galeria from './Galeria';
 import './Proyectos.css';
 
 const normalizarEstado = (estado) => (estado ?? '').toLowerCase().replace(/\s+/g, '-');
 const numeroProyecto = (indice) => String(indice + 1).padStart(2, '0');
+
+// Devuelve una galería tanto si el proyecto tiene varias fotos como si solo
+// tiene una, para que todas se puedan ampliar en el mismo modal.
+const imagenesDe = (proyecto) => {
+  if (proyecto.imagenes?.length) return proyecto.imagenes;
+  if (proyecto.imagen) {
+    return [{ src: proyecto.imagen, alt: `Vista del proyecto ${proyecto.titulo}` }];
+  }
+  return [];
+};
 
 // Sección de proyectos: filas alternadas imagen/texto con hover.
 const Proyectos = () => {
@@ -23,86 +33,94 @@ const Proyectos = () => {
         </header>
 
         <ol className="proyectos-lista">
-          {proyectos.map((proyecto, indice) => (
-            <li key={proyecto.titulo} className="proyecto">
-              <div className="proyecto-media">
-                {proyecto.imagenes && proyecto.imagenes.length > 0 ? (
-                  <Carrusel imagenes={proyecto.imagenes} />
-                ) : proyecto.imagen ? (
-                  <img src={proyecto.imagen} alt={`Vista del proyecto ${proyecto.titulo}`} />
-                ) : (
-                  <div className="proyecto-placeholder" aria-hidden="true">
-                    <span className="proyecto-placeholder-numero">{numeroProyecto(indice)}</span>
-                    <span className="proyecto-placeholder-titulo">{proyecto.titulo}</span>
+          {proyectos.map((proyecto, indice) => {
+            const imagenes = imagenesDe(proyecto);
+
+            return (
+              <li key={proyecto.titulo} className="proyecto">
+                <div
+                  className={`proyecto-media${
+                    imagenes.length > 0 ? ' proyecto-media--galeria' : ''
+                  }`}
+                >
+                  {imagenes.length > 0 ? (
+                    <Galeria imagenes={imagenes} titulo={proyecto.titulo} />
+                  ) : (
+                    <div className="proyecto-placeholder" aria-hidden="true">
+                      <span className="proyecto-placeholder-numero">
+                        {numeroProyecto(indice)}
+                      </span>
+                      <span className="proyecto-placeholder-titulo">{proyecto.titulo}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="proyecto-info">
+                  <div className="proyecto-meta">
+                    <span className="proyecto-indice">{numeroProyecto(indice)}</span>
+                    {proyecto.estado ? (
+                      <span className={`badge badge--${normalizarEstado(proyecto.estado)}`}>
+                        {proyecto.estado}
+                      </span>
+                    ) : null}
                   </div>
-                )}
-              </div>
 
-              <div className="proyecto-info">
-                <div className="proyecto-meta">
-                  <span className="proyecto-indice">{numeroProyecto(indice)}</span>
-                  {proyecto.estado ? (
-                    <span className={`badge badge--${normalizarEstado(proyecto.estado)}`}>
-                      {proyecto.estado}
-                    </span>
-                  ) : null}
+                  <h3 className="proyecto-titulo">{proyecto.titulo}</h3>
+                  <p className="proyecto-descripcion">{proyecto.descripcion}</p>
+
+                  {/* Tags de tecnologías (mapeo anidado) */}
+                  <ul className="proyecto-tags">
+                    {(proyecto.tecnologias ?? []).map((tecnologia) => (
+                      <li key={tecnologia} className="tag">
+                        {tecnologia}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="proyecto-enlaces">
+                    {proyecto.demoUrl ? (
+                      <a
+                        className="btn btn-primary"
+                        href={proyecto.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Ver demo
+                      </a>
+                    ) : null}
+
+                    {proyecto.codigoUrl ? (
+                      <a
+                        className="btn btn-outline"
+                        href={proyecto.codigoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Código
+                      </a>
+                    ) : null}
+
+                    {proyecto.apkUrl ? (
+                      <a
+                        className="btn btn-outline"
+                        href={proyecto.apkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Descargar APK
+                      </a>
+                    ) : null}
+
+                    {proyecto.repoPrivado ? (
+                      <span className="tag" aria-label="Repositorio privado">
+                        Repositorio privado
+                      </span>
+                    ) : null}
+                  </div>
                 </div>
-
-                <h3 className="proyecto-titulo">{proyecto.titulo}</h3>
-                <p className="proyecto-descripcion">{proyecto.descripcion}</p>
-
-                {/* Tags de tecnologías (mapeo anidado) */}
-                <ul className="proyecto-tags">
-                  {(proyecto.tecnologias ?? []).map((tecnologia) => (
-                    <li key={tecnologia} className="tag">
-                      {tecnologia}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="proyecto-enlaces">
-                  {proyecto.demoUrl ? (
-                    <a
-                      className="btn btn-primary"
-                      href={proyecto.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Ver demo
-                    </a>
-                  ) : null}
-
-                  {proyecto.codigoUrl ? (
-                    <a
-                      className="btn btn-outline"
-                      href={proyecto.codigoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Código
-                    </a>
-                  ) : null}
-
-                  {proyecto.apkUrl ? (
-                    <a
-                      className="btn btn-outline"
-                      href={proyecto.apkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Descargar APK
-                    </a>
-                  ) : null}
-
-                  {proyecto.repoPrivado ? (
-                    <span className="tag" aria-label="Repositorio privado">
-                      Repositorio privado
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>

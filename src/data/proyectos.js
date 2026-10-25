@@ -1,19 +1,18 @@
 import imgInvernadero from '../assets/tinkercad/demo-invernadero.png';
 import imgBasket from '../assets/tinkercad/basket.jpeg';
 
-import imgBoutique from '../assets/boutique/boutique.png';
-import imgBoutiqueAdmin from '../assets/boutique/admin-boutique.png';
-import imgBoutiqueCarrito from '../assets/boutique/carrito-boutique.png';
-import imgBoutiqueComprar from '../assets/boutique/comprar-boutique.png';
-import imgBoutiqueIniciar from '../assets/boutique/iniciar-boutique.jpeg';
-import imgBoutiqueProducto from '../assets/boutique/producto-boutique.png';
-import imgBoutiqueUsuario from '../assets/boutique/usuario-boutique.png';
 
 import imgSofiInicio from '../assets/sofi/sofi-web.jpeg';
 import imgSofiDashboard from '../assets/sofi/dashboard-sofi.jpeg';
 import imgSofiCalendario from '../assets/sofi/calendar-sofi.jpeg';
 import imgSofiCursos from '../assets/sofi/cursos-sofi.jpeg';
 import imgSofiRegistros from '../assets/sofi/registros-sofi.jpeg';
+
+import imgMinimarketInicio from '../assets/minimarket/inicio.png';
+import imgMinimarketCatalogo from '../assets/minimarket/catalogo.png';
+import imgMinimarketCarrito from '../assets/minimarket/carrito.png';
+import imgMinimarketDelivery from '../assets/minimarket/delivery.png';
+import imgMinimarketContacto from '../assets/minimarket/contacto.png';
 
 import imgEcolimLogin from '../assets/ecolim/login-eco.jpeg';
 import imgEcolimRegistro from '../assets/ecolim/registro-eco.jpeg';
@@ -26,7 +25,7 @@ import imgEcolimAdmin from '../assets/ecolim/admin-eco.jpeg';
 //   import imgInventario from '../assets/proyecto-inventario.png';
 //   y luego usa: imagen: imgInventario
 //   Si "imagen" queda en null, se muestra un marcador de posición con CSS.
-// - "imagenes": lista de { src, alt } para mostrar un carrusel.
+// - "imagenes": lista de { src, alt } para mostrar la galería con modal.
 
 export const proyectos = [
   {
@@ -57,20 +56,25 @@ export const proyectos = [
     estado: 'completado',
   },
   {
-    titulo: 'Boutique S&D, Tienda Online',
+    titulo: 'La Esquina Minimarket',
     descripcion:
-      'Tienda online de ropa con catálogo de productos, registro e inicio de sesión, y carrito de compras. Incluye un panel de administrador con roles para gestionar productos y usuarios.',
-    tecnologias: ['PHP', 'MySQL', 'Bootstrap', 'MVC'],
-    demoUrl: '',
-    codigoUrl: 'https://github.com/DanielaMendoza4/boutique-sd',
+      'SPA que simula un minimarket de Lima. El cliente explora 128 productos en 9 categorías, busca y filtra en tiempo real, arma su carrito con control de stock y ve el costo de delivery (gratis desde S/ 50). Incluye un formulario de contacto que envía mensajes reales con EmailJS.',
+    tecnologias: ['React 19', 'Vite', 'React Router', 'Bootstrap / React Bootstrap', 'EmailJS', 'SweetAlert2', 'Lucide React'],
+    demoUrl: 'https://minimarket-gamma.vercel.app/',
+    codigoUrl: 'https://github.com/DanielaMendoza4/minimarket',
+    resumen: 'Tienda web de barrio con catálogo, carrito y delivery.',
+    aspectosDestacados: [
+      'Filtros sincronizados con la URL (?cat=, ?sub=, ?q=), por lo que se pueden compartir.',
+      'Carrito con reglas de stock, subtotal, delivery y barra de progreso hacia el envío gratis.',
+      'Diseño responsive con identidad propia (paleta crema y verde, tipografías Bitter y Hanken Grotesk).',
+      'Accesibilidad: aria-live, aria-pressed, role="progressbar" y HTML semántico.',
+    ],
     imagenes: [
-      { src: imgBoutique, alt: 'Portada de la tienda online Boutique S&D' },
-      { src: imgBoutiqueIniciar, alt: 'Pantalla de inicio de sesión de Boutique S&D' },
-      { src: imgBoutiqueProducto, alt: 'Catálogo de productos de Boutique S&D' },
-      { src: imgBoutiqueComprar, alt: 'Proceso de compra en Boutique S&D' },
-      { src: imgBoutiqueCarrito, alt: 'Carrito de compras de Boutique S&D' },
-      { src: imgBoutiqueAdmin, alt: 'Panel de administrador de Boutique S&D' },
-      { src: imgBoutiqueUsuario, alt: 'Gestión de usuarios en Boutique S&D' },
+      { src: imgMinimarketInicio, alt: 'Captura de inicio de La Esquina Minimarket' },
+      { src: imgMinimarketCatalogo, alt: 'Captura del catálogo con buscador y filtros por categoría' },
+      { src: imgMinimarketCarrito, alt: 'Captura del carrito con resumen de compra y delivery' },
+      { src: imgMinimarketDelivery, alt: 'Captura de la vista con costo de delivery y progreso hacia envío gratis' },
+      { src: imgMinimarketContacto, alt: 'Captura del formulario de contacto de La Esquina Minimarket' },
     ],
     estado: 'completado',
   },

@@ -1,0 +1,397 @@
+/* ==========================================================================
+   Galería de proyectos — portada con miniaturas y modal ampliado.
+   Usa las variables de tema de index.css.
+   ========================================================================== */
+
+/* --- Vista previa dentro de la tarjeta --- */
+
+.galeria {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-surface-2);
+}
+
+.galeria-portada {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  background-color: var(--color-surface-2);
+}
+
+.galeria-portada img {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-3);
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.galeria-portada:hover img,
+.galeria-portada:focus-visible img {
+  transform: scale(1.02);
+}
+
+.galeria-insignia {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-translucent);
+  color: var(--color-text);
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.5;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+}
+
+.galeria-insignia svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.galeria-miniaturas {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border-top: var(--border-width) solid var(--color-border);
+  background-color: var(--color-surface);
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.galeria-miniaturas li {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.galeria-miniatura {
+  display: block;
+  width: 4.5rem;
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-2);
+  opacity: 0.8;
+  transition: opacity var(--transition), border-color var(--transition),
+    transform var(--transition);
+}
+
+.galeria-miniatura:hover,
+.galeria-miniatura:focus-visible {
+  opacity: 1;
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.galeria-miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* --- Modal ampliado --- */
+
+.galeria-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: var(--space-5);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  border: 0;
+  background-color: transparent;
+  color: var(--color-text);
+}
+
+.galeria-modal::backdrop {
+  background-color: rgba(12, 9, 7, 0.86);
+  backdrop-filter: blur(8px);
+}
+
+.galeria-modal[open] {
+  display: grid;
+  place-items: center;
+}
+
+.galeria-modal[open]::backdrop {
+  animation: galeria-fondo 0.25s ease both;
+}
+
+.galeria-modal-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  width: min(100%, 80rem);
+  height: min(100%, 52rem);
+  max-height: 100%;
+  padding: var(--space-4);
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.galeria-modal[open] .galeria-modal-panel {
+  animation: galeria-panel 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes galeria-fondo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes galeria-panel {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.galeria-modal-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 2.5rem;
+}
+
+.galeria-modal-titulo {
+  overflow: hidden;
+  font-family: var(--font-title);
+  font-size: var(--step-1);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.galeria-modal-acciones {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.galeria-modal-contador {
+  color: var(--color-muted);
+  font-size: var(--step--1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.galeria-modal-cerrar {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  font-size: 1.15rem;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition);
+}
+
+.galeria-modal-cerrar:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.galeria-modal-escenario {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 0;
+  touch-action: pan-y pinch-zoom;
+}
+
+.galeria-modal-escenario--unica {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.galeria-modal-figura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-stage);
+}
+
+.galeria-modal-figura img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.galeria-modal-flecha {
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  font-size: 1.5rem;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.galeria-modal-flecha:hover {
+  transform: scale(1.05);
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.galeria-modal-pie {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.galeria-modal-descripcion {
+  overflow: hidden;
+  color: var(--color-muted);
+  font-size: var(--step--1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.galeria-modal-miniaturas {
+  display: flex;
+  gap: var(--space-2);
+  padding-bottom: var(--space-1);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.galeria-modal-miniaturas li {
+  flex: 0 0 auto;
+}
+
+.galeria-modal-miniatura {
+  display: block;
+  width: 4rem;
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  overflow: hidden;
+  border: var(--border-width-strong) solid transparent;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-2);
+  opacity: 0.65;
+  transition: opacity var(--transition), border-color var(--transition);
+}
+
+.galeria-modal-miniatura:hover,
+.galeria-modal-miniatura:focus-visible {
+  opacity: 1;
+}
+
+.galeria-modal-miniatura.activa {
+  border-color: var(--color-accent);
+  opacity: 1;
+}
+
+.galeria-modal-miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* --- Ajustes para pantallas pequeñas --- */
+
+@media (max-width: 40rem) {
+  .galeria-modal {
+    padding: var(--space-2);
+  }
+
+  .galeria-modal-panel {
+    grid-template-rows: auto auto auto;
+    height: auto;
+    max-height: 100%;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+  }
+
+  .galeria-modal-figura img {
+    max-height: min(58dvh, 32rem);
+  }
+
+  .galeria-modal-titulo {
+    font-size: var(--step-0);
+  }
+
+  .galeria-modal-escenario {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .galeria-modal-flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .galeria-modal-flecha:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .galeria-modal-flecha--anterior {
+    left: var(--space-2);
+  }
+
+  .galeria-modal-flecha--siguiente {
+    right: var(--space-2);
+  }
+
+  .galeria-modal-miniatura {
+    width: 3.25rem;
+  }
+}
