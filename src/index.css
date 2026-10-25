@@ -25,6 +25,8 @@
   --color-surface: var(--card);
   --color-surface-2: #262019;
   --color-surface-translucent: rgba(29, 25, 22, 0.85);
+  /* Escenario oscuro de las imágenes ampliadas; se mantiene igual en ambos temas. */
+  --color-stage: #14110f;
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
