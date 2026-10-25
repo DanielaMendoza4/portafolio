@@ -21,6 +21,11 @@ import imgEcolimLogin from '../assets/ecolim/login-eco.jpeg';
 import imgEcolimRegistro from '../assets/ecolim/registro-eco.jpeg';
 import imgEcolimAdmin from '../assets/ecolim/admin-eco.jpeg';
 
+import imgNovaLogin from '../assets/novasalud/login-nova.png';
+import imgNovaAdmin from '../assets/novasalud/admin-nova.png';
+import imgNovaProducto from '../assets/novasalud/nuevoproducto-nova.png';
+import imgNovaVenta from '../assets/novasalud/venta-nova.png';
+
 // Proyectos del portafolio. El componente los recorre con .map().
 // - "estado": 'completado' | 'en proceso'  (se muestra como insignia; opcional)
 // - "demoUrl" / "codigoUrl" / "apkUrl": si están vacíos, ese botón no se muestra.
@@ -119,5 +124,20 @@ export const proyectos = [
       { src: imgEstanteMonitor, alt: 'Circuito en Tinkercad con Arduino Uno, sensor ultrasónico, LCD y servomotor en estado de alarma' },
     ],
     estado: 'completado',
+  },
+  {
+    titulo: 'Nova Salud, Sistema de Botica e Inventario',
+    descripcion:
+      'Aplicación web para gestionar una botica, hecha con React y Vite. Incluye un panel con indicadores de stock y vencimientos, inventario con búsqueda en tiempo real, venta rápida y alertas, con login y rutas protegidas por rol (administrador, vendedor y almacén). Proyecto en desarrollo con datos simulados.',
+    tecnologias: ['React 19', 'Vite', 'React Router', 'Context API', 'Bootstrap', 'CSS'],
+    demoUrl: 'https://nova-salud-smoky.vercel.app/',
+    codigoUrl: '',
+    imagenes: [
+      { src: imgNovaLogin, alt: 'Dashboard de Nova Salud con indicadores de stock bajo, vencimientos y tabla de inventario' },
+      { src: imgNovaAdmin, alt: 'Panel de administrador de Nova Salud con control de stock y vencimientos' },
+      { src: imgNovaProducto, alt: 'Vista de registro de nuevo producto en Nova Salud' },
+      { src: imgNovaVenta, alt: 'Vista de venta rápida en Nova Salud' },
+    ],
+    estado: 'en proceso',
   },
 ];
