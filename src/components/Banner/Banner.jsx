@@ -9,6 +9,10 @@ const Banner = () => {
   return (
     <section id="inicio" className="banner reveal" ref={ref}>
       <div className="banner-inner">
+        <svg className="banner-destellos" viewBox="0 0 220 160" aria-hidden="true" focusable="false">
+          <path d="M47 4 54 25 75 32 54 39 47 60 40 39 19 32 40 25 47 4Z" />
+          <path d="m174 91 5 15 15 5-15 5-5 15-5-15-15-5 15-5 5-15Z" />
+        </svg>
         <div className="banner-texto">
           <p className="banner-eyebrow">
             {perfil.institucion} · {perfil.sede} · {perfil.semestre}

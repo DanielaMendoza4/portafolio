@@ -127,8 +127,8 @@
 }
 
 .galeria-modal::backdrop {
-  background-color: rgba(12, 9, 7, 0.86);
-  backdrop-filter: blur(8px);
+  background-color: var(--overlay);
+  backdrop-filter: blur(0.5rem);
 }
 
 .galeria-modal[open] {

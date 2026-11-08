@@ -1,110 +1,114 @@
-/* ==========================================================================
-   index.css — Identidad visual global del portafolio
-   Aquí viven TODAS las variables de diseño. Cambiar la identidad visual
-   (colores, fuentes, espaciados, radios, sombras) solo requiere editar :root.
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* --- Tipografías --- */
-  --font-title: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+  --font-display: 'Manrope', 'Arial', sans-serif;
+  --font-title: var(--font-display);
+  --font-body: 'DM Sans', 'Segoe UI', sans-serif;
 
-  /* --- Colores · Modo oscuro (tema por defecto) --- */
-  --bg: #14110f;
-  --card: #1d1916;
-  --border: #3a322c;
-  --text: #f3ece6;
-  --muted: #b8aca2;
-  --accent: #e8714a;
-  /* Rojo cálido de la misma familia que el terracota: se usa en alertas
-     de error para no introducir azules ajenos a la paleta. */
-  --danger: #e2584f;
+  --olive: #5f6b2f;
+  --forest: #26382f;
+  --forest-deep: #1d2b25;
+  --green: #356b32;
+  --mint: #8fdcc3;
+  --mint-soft: #c5f0e2;
+  --white-soft: #f0f4ef;
+  --text-muted: #bdc9c0;
+  --line: rgb(203 230 215 / 18%);
+  --surface: rgb(240 248 241 / 7%);
+  --surface-strong: rgb(240 248 241 / 11%);
+  --surface-translucent: rgb(29 43 37 / 82%);
+  --danger: #ff9a8d;
+  --overlay: rgb(12 18 15 / 86%);
 
-  /* Alias que consumen los componentes (mismos nombres de antes). */
-  --color-bg: var(--bg);
-  --color-surface: var(--card);
-  --color-surface-2: #262019;
-  --color-surface-translucent: rgba(29, 25, 22, 0.85);
-  /* Escenario oscuro de las imágenes ampliadas; se mantiene igual en ambos temas. */
-  --color-stage: #14110f;
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-contrast: #1a1410;
-  --color-accent-soft: rgba(232, 113, 74, 0.16);
-  --color-border: var(--border);
+  --color-bg: var(--forest-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-strong);
+  --color-surface-translucent: var(--surface-translucent);
+  --color-stage: var(--forest-deep);
+  --color-text: var(--white-soft);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--mint);
+  --color-accent-contrast: var(--forest-deep);
+  --color-accent-soft: rgb(143 220 195 / 15%);
+  --color-border: var(--line);
   --color-danger: var(--danger);
 
-  /* --- Espaciado fluido (escala 1–8) --- */
+  --gradient-page: linear-gradient(128deg, var(--olive) 0%, var(--forest) 38%, var(--forest-deep) 72%, var(--green) 125%);
+  --gradient-hero: radial-gradient(ellipse at 82% 72%, rgb(53 107 50 / 38%), transparent 48%);
+  --gradient-card: linear-gradient(145deg, var(--surface-strong), var(--surface));
+  --gradient-placeholder: linear-gradient(135deg, var(--surface-strong), var(--surface));
+
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
-  --space-7: clamp(2.5rem, 6vw, 4rem);
-  --space-8: clamp(4rem, 10vw, 7rem);
+  --space-7: clamp(2.5rem, 6vw, 4.5rem);
+  --space-8: clamp(4rem, 9vw, 7.5rem);
+  --space-9: clamp(5rem, 12vw, 10rem);
 
-  /* --- Radios --- */
-  --radius-sm: 0.4rem;
-  --radius-md: 0.9rem;
-  --radius-lg: 1.5rem;
+  --radius-xs: 0.65rem;
+  --radius-sm: 1rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --radius-xl: 2.75rem;
   --radius-pill: 999px;
 
-  /* --- Sombras --- */
-  --shadow-sm: 0 1px 2px rgba(22, 19, 15, 0.06);
-  --shadow-md: 0 12px 30px -12px rgba(22, 19, 15, 0.25);
-  --shadow-lg: 0 30px 60px -25px rgba(22, 19, 15, 0.35);
-
-  /* --- Tipografía fluida --- */
-  --step--1: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
-  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
-  --step-1: clamp(1.2rem, 1.1rem + 0.6vw, 1.5rem);
-  --step-2: clamp(1.5rem, 1.3rem + 1.2vw, 2.2rem);
-  --step-3: clamp(2rem, 1.5rem + 2.5vw, 3.4rem);
-  --step-4: clamp(2.6rem, 1.8rem + 4vw, 5rem);
-
-  /* --- Layout --- */
-  --content-width: 72rem;
-  --header-height: 5rem;
+  --step--1: clamp(0.82rem, 0.78rem + 0.15vw, 0.95rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.12rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.6vw, 1.55rem);
+  --step-2: clamp(1.55rem, 1.25rem + 1.3vw, 2.25rem);
+  --step-3: clamp(2.15rem, 1.6rem + 3vw, 4.25rem);
+  --step-4: clamp(3.1rem, 1.9rem + 7vw, 7.2rem);
+  --content-width: 76rem;
+  --header-height: 5.5rem;
   --border-width: 1px;
   --border-width-strong: 2px;
   --transition: 0.25s ease;
+  --shadow-sm: 0 0.75rem 2rem rgb(0 0 0 / 12%);
+  --shadow-md: 0 1.5rem 4rem rgb(0 0 0 / 18%);
+  --shadow-lg: 0 2rem 6rem rgb(0 0 0 / 28%);
 }
 
-/* --- Colores · Modo claro --- */
 :root[data-theme='light'] {
-  --bg: #faf6f1;
-  --card: #ffffff;
-  --border: #e6ddd3;
-  --text: #2a211b;
-  --muted: #6b5d52;
-  /* Ligeramente más oscuro que el acento "de marca" para superar 4.5:1
-     sobre el fondo claro sin alterar la identidad terracota. */
-  --accent: #bd4a26;
-  /* Mismo criterio de contraste que el acento, sobre superficie clara. */
-  --danger: #c0392b;
+  color-scheme: light;
+  --olive: #e6efd9;
+  --forest: #f0f5eb;
+  --forest-deep: #f7f9f4;
+  --green: #dcebd8;
+  --mint: #326b58;
+  --mint-soft: #254f41;
+  --white-soft: #1e3028;
+  --text-muted: #506258;
+  --line: rgb(38 68 51 / 18%);
+  --surface: rgb(255 255 255 / 62%);
+  --surface-strong: rgb(255 255 255 / 86%);
+  --surface-translucent: rgb(247 249 244 / 86%);
+  --danger: #9c3e36;
+  --overlay: rgb(12 18 15 / 88%);
 
-  /* Alias coherentes con el modo claro. */
-  --color-bg: var(--bg);
-  --color-surface: var(--card);
-  --color-surface-2: #efeae1;
-  --color-surface-translucent: rgba(255, 255, 255, 0.85);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-contrast: #ffffff;
-  --color-accent-soft: rgba(194, 81, 42, 0.12);
-  --color-border: var(--border);
+  --color-bg: var(--forest-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-strong);
+  --color-surface-translucent: var(--surface-translucent);
+  --color-stage: #18251f;
+  --color-text: var(--white-soft);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--mint);
+  --color-accent-contrast: #f7f9f4;
+  --color-accent-soft: rgb(50 107 88 / 12%);
+  --color-border: var(--line);
   --color-danger: var(--danger);
-  --shadow-sm: 0 1px 2px rgba(42, 33, 27, 0.06);
-  --shadow-md: 0 12px 30px -12px rgba(42, 33, 27, 0.25);
-  --shadow-lg: 0 30px 60px -25px rgba(42, 33, 27, 0.35);
+  --gradient-page: linear-gradient(128deg, var(--olive), var(--forest) 44%, var(--forest-deep) 82%, var(--green));
+  --gradient-hero: radial-gradient(ellipse at 82% 72%, rgb(121 173 119 / 23%), transparent 48%);
+  --gradient-card: linear-gradient(145deg, var(--surface-strong), var(--surface));
+  --gradient-placeholder: linear-gradient(135deg, var(--surface-strong), var(--surface));
+  --shadow-sm: 0 0.75rem 2rem rgb(32 54 41 / 7%);
+  --shadow-md: 0 1.5rem 4rem rgb(32 54 41 / 10%);
+  --shadow-lg: 0 2rem 6rem rgb(32 54 41 / 16%);
 }
-
-/* ==========================================================================
-   Reset mínimo
-   ========================================================================== */
 
 *,
 *::before,
@@ -123,13 +127,15 @@ html {
 }
 
 body {
+  min-width: 20rem;
   min-height: 100dvh;
+  overflow-x: hidden;
+  background: var(--gradient-page);
+  background-attachment: fixed;
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--step-0);
   line-height: 1.65;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   transition: background-color var(--transition), color var(--transition);
 }
@@ -151,8 +157,13 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+input,
+textarea {
   font: inherit;
+}
+
+button {
   color: inherit;
   background: none;
   border: none;
@@ -169,73 +180,67 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-title);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
   text-wrap: balance;
 }
 
-/* Foco visible accesible en toda la app */
 :focus-visible {
   outline: var(--border-width-strong) solid var(--color-accent);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
+  outline-offset: 4px;
+  border-radius: var(--radius-xs);
 }
 
-/* ==========================================================================
-   Utilidades globales (definidas UNA sola vez)
-   ========================================================================== */
-
-/* Ancho de contenido centrado, nunca genera scroll horizontal */
 .container {
   width: min(calc(100% - var(--space-5) * 2), var(--content-width));
   margin-inline: auto;
 }
 
-/* Espaciado vertical estándar de cada sección */
 .section {
   padding-block: var(--space-8);
 }
 
 .section-eyebrow {
-  font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--color-accent);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .section-title {
+  max-width: 18ch;
+  color: var(--color-accent);
   font-size: var(--step-3);
-  max-width: 22ch;
+  font-weight: 800;
+  letter-spacing: -0.065em;
 }
 
 .section-lead {
+  max-width: 58ch;
   color: var(--color-muted);
-  max-width: 55ch;
 }
 
-/* Color de acento reutilizable */
 .text-accent {
   color: var(--color-accent);
 }
 
-/* Botones */
 .btn {
   display: inline-flex;
+  width: fit-content;
+  min-height: 2.9rem;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  width: fit-content;
   padding: var(--space-3) var(--space-5);
   border: var(--border-width) solid transparent;
   border-radius: var(--radius-pill);
   font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: transform var(--transition), background-color var(--transition),
-    color var(--transition), border-color var(--transition);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform var(--transition), background-color var(--transition), color var(--transition), border-color var(--transition);
 }
 
 .btn:hover {
@@ -249,6 +254,7 @@ h4 {
 
 .btn-outline {
   border-color: var(--color-border);
+  background-color: var(--color-surface);
   color: var(--color-text);
 }
 
@@ -265,51 +271,45 @@ h4 {
   color: var(--color-accent);
 }
 
-/* Etiqueta tipo píldora para tecnologías */
-.tag {
-  padding: var(--space-1) var(--space-3);
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-pill);
-  font-size: var(--step--1);
-  color: var(--color-muted);
-}
-
-/* Insignia de estado (completado / en proceso / en curso) */
+.tag,
 .badge {
   display: inline-flex;
+  width: fit-content;
   align-items: center;
   padding: var(--space-1) var(--space-3);
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-pill);
-  font-size: var(--step--1);
-  font-weight: 600;
   color: var(--color-muted);
+  font-size: var(--step--1);
+}
+
+.badge {
+  font-weight: 700;
 }
 
 .badge--completado {
-  color: var(--color-accent);
   border-color: var(--color-accent);
   background-color: var(--color-accent-soft);
+  color: var(--color-accent);
 }
 
 .badge--en-proceso,
 .badge--en-curso {
-  color: var(--color-text);
   background-color: var(--color-surface-2);
+  color: var(--color-text);
 }
 
-/* Enlace de saltar contenido (accesibilidad) */
 .skip-link {
   position: absolute;
   top: var(--space-3);
   left: var(--space-3);
   z-index: 100;
   padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
   background-color: var(--color-accent);
   color: var(--color-accent-contrast);
   font-size: var(--step--1);
-  font-weight: 600;
+  font-weight: 700;
   transform: translateY(-200%);
   transition: transform var(--transition);
 }
@@ -318,17 +318,7 @@ h4 {
   transform: translateY(0);
 }
 
-/* ==========================================================================
-   Alertas de SweetAlert2
-   Se montan fuera del árbol de la app (en <body>), por eso viven aquí y no
-   en el CSS del componente. Los colores salen de las variables del tema, así
-   que la alerta respeta el modo claro/oscuro sin duplicar paletas.
-   ========================================================================== */
-
-/* El popup recibe la clase "alerta-portafolio" vía customClass. */
 .alerta-portafolio {
-  /* API de variables CSS de SweetAlert2: se aplican al popup y las heredan
-     sus hijos (botones, título, contenedor de texto). */
   --swal2-border: var(--border-width) solid var(--color-border);
   --swal2-border-radius: var(--radius-md);
   --swal2-confirm-button-color: var(--color-accent-contrast);
@@ -337,7 +327,7 @@ h4 {
 }
 
 .alerta-portafolio .swal2-title {
-  font-family: var(--font-title);
+  font-family: var(--font-display);
   color: inherit;
 }
 
@@ -347,27 +337,19 @@ h4 {
 }
 
 .alerta-portafolio .swal2-confirm-button {
-  font-weight: 600;
+  font-weight: 700;
 }
-
-/* ==========================================================================
-   Aparición al hacer scroll (se activa con useReveal / IntersectionObserver)
-   ========================================================================== */
 
 .reveal {
   opacity: 0;
-  transform: translateY(1.5rem);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(var(--space-5));
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
-
-/* ==========================================================================
-   Accesibilidad: respeta la preferencia de movimiento reducido
-   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {

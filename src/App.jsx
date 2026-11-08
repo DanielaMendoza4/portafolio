@@ -20,7 +20,7 @@ const obtenerTemaInicial = () => {
   const guardado = window.localStorage.getItem('tema');
   if (guardado === TEMA_CLARO || guardado === TEMA_OSCURO) return guardado;
 
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? TEMA_OSCURO : TEMA_CLARO;
+  return TEMA_OSCURO;
 };
 
 function App() {

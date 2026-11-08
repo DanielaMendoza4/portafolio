@@ -1,91 +1,65 @@
-/* ==========================================================================
-   Habilidades — tarjetas con logo + nombre y filtro por área (pestañas).
-   Los colores usan variables globales con valores por defecto para heredar
-   el tema del portafolio (index.css) sin depender de él.
-   ========================================================================== */
-
-/* Sincroniza light-dark() del color de marca con el tema (data-theme). */
-.habilidades {
-  color-scheme: light;
-}
-
-[data-theme='dark'] .habilidades {
-  color-scheme: dark;
-}
-
 .habilidades-encabezado {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3, 0.75rem);
-  margin-bottom: var(--space-5, 1.5rem);
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
 }
-
-/* --- Pestañas tipo píldora ---------------------------------------------- */
 
 .habilidades-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2, 0.5rem);
-  margin-bottom: var(--space-6, 2rem);
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
 }
 
 .habilidades-tab {
-  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
-  border: var(--border-width, 1px) solid var(--color-border, rgba(0, 0, 0, 0.12));
-  border-radius: var(--radius-pill, 999px);
-  background-color: var(--color-surface, #fff);
-  font-size: var(--step--1, 0.9rem);
-  font-weight: 600;
-  color: var(--color-muted, #6f675c);
-  transition:
-    color var(--transition, 0.25s ease),
-    border-color var(--transition, 0.25s ease),
-    background-color var(--transition, 0.25s ease);
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-muted);
+  font-size: var(--step--1);
+  font-weight: 700;
+  transition: color var(--transition), border-color var(--transition), background-color var(--transition);
 }
 
 .habilidades-tab:not([aria-selected='true']):hover {
-  color: var(--color-accent, #d2542f);
-  border-color: var(--color-accent, #d2542f);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .habilidades-tab[aria-selected='true'] {
-  background-color: var(--color-accent, #d2542f);
-  border-color: var(--color-accent, #d2542f);
-  color: var(--color-accent-contrast, #fff);
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
 }
-
-/* --- Grid de tarjetas ---------------------------------------------------- */
 
 .habilidades-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr));
-  gap: clamp(0.75rem, 2vw, 1.25rem);
+  gap: var(--space-3);
 }
 
 .habilidad {
-  /* Color de marca de la tecnología (inyectado desde los datos). */
-  --brand: var(--color-accent, #d2542f);
-
+  --brand: var(--color-accent);
   display: flex;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-3, 0.75rem);
-  padding: clamp(1rem, 3vw, 1.75rem) var(--space-3, 0.75rem);
-  border: var(--border-width, 1px) solid var(--color-border, rgba(0, 0, 0, 0.12));
-  border-radius: var(--radius-md, 0.9rem);
-  background-color: var(--color-surface, #fff);
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--gradient-card);
   text-align: center;
-  transition:
-    transform var(--transition, 0.25s ease),
-    border-color var(--transition, 0.25s ease),
-    box-shadow var(--transition, 0.25s ease);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .habilidad-icono {
   display: grid;
   place-items: center;
-  color: var(--color-muted, #6f675c);
-  transition: color var(--transition, 0.25s ease);
+  color: var(--color-muted);
+  transition: color var(--transition);
 }
 
 .habilidad-icono svg {
@@ -94,18 +68,17 @@
 }
 
 .habilidad-nombre {
-  font-size: var(--step--1, 0.9rem);
-  font-weight: 600;
-  color: var(--color-text, #16130f);
+  color: var(--color-text);
+  font-size: var(--step--1);
+  font-weight: 700;
   overflow-wrap: anywhere;
 }
 
-/* Hover (y foco por teclado): sube, se ilumina el borde y pinta el logo. */
 .habilidad:hover,
 .habilidad:focus-within {
-  transform: translateY(-0.35rem);
   border-color: var(--brand);
-  box-shadow: 0 0.75rem 1.5rem -0.875rem color-mix(in srgb, var(--brand) 65%, transparent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(calc(-1 * var(--space-1)));
 }
 
 .habilidad:hover .habilidad-icono,
@@ -113,14 +86,11 @@
   color: var(--brand);
 }
 
-/* Pantallas sin hover (celular/tablet táctil): logos a color desde el inicio. */
 @media (hover: none) {
   .habilidad-icono {
     color: var(--brand);
   }
 }
-
-/* --- Accesibilidad: movimiento reducido --------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   .habilidades-tab,

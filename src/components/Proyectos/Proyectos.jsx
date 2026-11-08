@@ -37,7 +37,10 @@ const Proyectos = () => {
             const imagenes = imagenesDe(proyecto);
 
             return (
-              <li key={proyecto.titulo} className="proyecto">
+              <li
+                key={proyecto.titulo}
+                className={`proyecto${proyecto.destacada ? ' proyecto--destacado' : ''}`}
+              >
                 <div
                   className={`proyecto-media${
                     imagenes.length > 0 ? ' proyecto-media--galeria' : ''
@@ -67,6 +70,7 @@ const Proyectos = () => {
 
                   <h3 className="proyecto-titulo">{proyecto.titulo}</h3>
                   <p className="proyecto-descripcion">{proyecto.descripcion}</p>
+                  {proyecto.nota ? <p className="proyecto-nota">{proyecto.nota}</p> : null}
 
                   {/* Tags de tecnologías (mapeo anidado) */}
                   <ul className="proyecto-tags">
@@ -86,6 +90,28 @@ const Proyectos = () => {
                         rel="noopener noreferrer"
                       >
                         Ver demo
+                      </a>
+                    ) : null}
+
+                    {proyecto.frontendUrl ? (
+                      <a
+                        className="btn btn-outline"
+                        href={proyecto.frontendUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Frontend
+                      </a>
+                    ) : null}
+
+                    {proyecto.backendUrl ? (
+                      <a
+                        className="btn btn-outline"
+                        href={proyecto.backendUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Backend
                       </a>
                     ) : null}
 

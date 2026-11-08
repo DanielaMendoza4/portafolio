@@ -1,6 +1,11 @@
 import imgInvernadero from '../assets/tinkercad/demo-invernadero.png';
 import imgBasket from '../assets/tinkercad/basket.jpeg';
-
+import imgInventarioProveedores from '../assets/inventario/prove-inve.jpg';
+import imgInventarioProductos from '../assets/inventario/produc-inve.jpg';
+import imgInventarioLogin from '../assets/inventario/login-inve.jpg';
+import imgInventarioKardex from '../assets/inventario/kax-inve.jpg';
+import imgInventarioDashboard from '../assets/inventario/dash-inve.jpg';
+import imgInventarioCategorias from '../assets/inventario/cate-inve.jpg';
 
 import imgSofiInicio from '../assets/sofi/sofi-web.jpeg';
 import imgSofiDashboard from '../assets/sofi/dashboard-sofi.jpeg';
@@ -36,6 +41,25 @@ import imgNovaVenta from '../assets/novasalud/venta-nova.png';
 // - "imagenes": lista de { src, alt } para mostrar la galería con modal.
 
 export const proyectos = [
+  {
+    titulo: 'Sistema de Inventario',
+    descripcion:
+      'Aplicación full stack para controlar stock mediante kardex, con roles (Administrador, Supervisor y Almacenero) y autenticación JWT. Cada movimiento actualiza el stock dentro de una transacción SQL con bloqueo de fila.',
+    tecnologias: ['React', 'Node.js', 'Express', 'MySQL', 'JWT', 'Vercel', 'Render', 'Aiven'],
+    demoUrl: 'https://app-inventario-eight.vercel.app',
+    frontendUrl: 'https://github.com/DanielaMendoza4/app-inventario',
+    backendUrl: 'https://github.com/DanielaMendoza4/miApi',
+    nota: 'Usuario de prueba: demo@inventario.com / 123456. La API está en un plan gratuito: el primer inicio de sesión puede tardar hasta 50 segundos.',
+    destacada: true,
+    imagenes: [
+      { src: imgInventarioDashboard, alt: 'Panel principal del Sistema de Inventario' },
+      { src: imgInventarioLogin, alt: 'Inicio de sesión del Sistema de Inventario' },
+      { src: imgInventarioProductos, alt: 'Gestión de productos del Sistema de Inventario' },
+      { src: imgInventarioProveedores, alt: 'Gestión de proveedores del Sistema de Inventario' },
+      { src: imgInventarioKardex, alt: 'Kardex de movimientos de inventario' },
+      { src: imgInventarioCategorias, alt: 'Gestión de categorías del Sistema de Inventario' },
+    ],
+  },
   {
     titulo: 'SOFI-WEB, Frontend',
     descripcion:

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { navegacion } from '../../data/navegacion';
 import { perfil } from '../../data/perfil';
 import './Navbar.css';
@@ -29,14 +29,44 @@ const IconoTema = ({ tema }) =>
 const Navbar = ({ tema, onToggleTema }) => {
   // Estado para abrir/cerrar el menú móvil.
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [seccionActiva, setSeccionActiva] = useState(navegacion[0].id);
 
   const cerrarMenu = () => setMenuAbierto(false);
+
+  useEffect(() => {
+    const secciones = navegacion
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (!('IntersectionObserver' in window)) return undefined;
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        const visibles = entradas
+          .filter((entrada) => entrada.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visibles[0]) setSeccionActiva(visibles[0].target.id);
+      },
+      { rootMargin: '-25% 0px -60% 0px', threshold: 0 },
+    );
+
+    secciones.forEach((seccion) => observador.observe(seccion));
+    return () => observador.disconnect();
+  }, []);
 
   return (
     <header className="navbar">
       <div className="navbar-inner">
         {/* Logo: nombre + apellido resaltado con el color de acento */}
-        <a href="#inicio" className="navbar-logo" onClick={cerrarMenu}>
+        <a
+          href="#inicio"
+          className="navbar-logo"
+          onClick={() => {
+        setSeccionActiva('inicio');
+        cerrarMenu();
+          }}
+        >
           {perfil.nombre} <span className="text-accent">{perfil.apellido}</span>
         </a>
 
@@ -72,7 +102,16 @@ const Navbar = ({ tema, onToggleTema }) => {
           aria-label="Navegación principal"
         >
           {navegacion.map((enlace) => (
-            <a key={enlace.id} href={`#${enlace.id}`} className="navbar-enlace" onClick={cerrarMenu}>
+            <a
+              key={enlace.id}
+              href={`#${enlace.id}`}
+              className={`navbar-enlace${seccionActiva === enlace.id ? ' is-active' : ''}`}
+              aria-current={seccionActiva === enlace.id ? 'location' : undefined}
+              onClick={() => {
+                setSeccionActiva(enlace.id);
+                cerrarMenu();
+              }}
+            >
               {enlace.etiqueta}
             </a>
           ))}

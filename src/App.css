@@ -1,26 +1,19 @@
-/* ==========================================================================
-   App.css — Solo estructura del contenedor principal de la aplicación.
-   Sin colores ni medidas sueltas: todo pasa por variables de index.css.
-   ========================================================================== */
-
 .app {
   display: flex;
-  flex-direction: column;
   min-height: 100dvh;
-  overflow-x: hidden;
-  background-color: var(--color-bg);
+  flex-direction: column;
+  overflow: clip;
+  background: var(--gradient-hero);
 }
 
-/* El main ocupa el alto disponible para empujar el footer al final */
 .app-main {
-  flex: 1;
   display: flex;
-  flex-direction: column;
   width: 100%;
   min-width: 0;
+  flex: 1;
+  flex-direction: column;
 }
 
-/* Cada sección ocupa el ancho completo del main */
 .app-main > section {
   width: 100%;
 }

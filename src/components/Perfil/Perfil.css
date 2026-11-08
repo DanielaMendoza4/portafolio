@@ -1,16 +1,11 @@
-/* ==========================================================================
-   Perfil — párrafo breve + datos rápidos a la izquierda, educación a la derecha.
-   ========================================================================== */
-
 .perfil {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-7);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
 }
 
 .perfil-titulo {
   margin-top: var(--space-3);
-  max-width: 14ch;
 }
 
 .perfil-texto {
@@ -19,22 +14,19 @@
   gap: var(--space-6);
 }
 
-/* Párrafo único: tamaño intermedio, cómodo de leer, sin alargarse. */
 .perfil-resumen {
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  line-height: 1.7;
-  max-width: 60ch;
+  max-width: 62ch;
   color: var(--color-text);
+  font-size: clamp(var(--step-0), 2vw, var(--step-1));
+  line-height: 1.75;
 }
-
-/* --- Datos rápidos: cifra + etiqueta ------------------------------------ */
 
 .perfil-datos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
   gap: var(--space-4);
-  border-top: var(--border-width) solid var(--color-border);
   padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border);
 }
 
 .perfil-dato {
@@ -44,23 +36,23 @@
 }
 
 .perfil-dato-cifra {
-  font-family: var(--font-title);
-  font-size: var(--step-1);
-  font-weight: 600;
-  line-height: 1.1;
   color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .perfil-dato-etiqueta {
-  font-size: var(--step--1);
   color: var(--color-muted);
+  font-size: var(--step--1);
 }
 
-/* --- Educación y certificaciones ---------------------------------------- */
-
 .perfil-educacion {
-  border-top: var(--border-width-strong) solid var(--color-accent);
-  padding-top: var(--space-5);
+  padding: var(--space-5);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-card);
 }
 
 .perfil-educacion-cabecera {
@@ -69,12 +61,11 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .perfil-subtitulo {
   font-size: var(--step-1);
-  margin: 0;
 }
 
 .educacion-lista {
@@ -87,10 +78,9 @@
   flex-direction: column;
   gap: var(--space-1);
   padding-block: var(--space-4);
-  border-bottom: var(--border-width) solid var(--color-border);
+  border-top: var(--border-width) solid var(--color-border);
 }
 
-/* Título y badge: el badge siempre alineado a la derecha del título. */
 .educacion-cabecera {
   display: flex;
   flex-wrap: wrap;
@@ -102,27 +92,27 @@
 .educacion-titulo {
   flex: 1 1 auto;
   font-size: var(--step-0);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .educacion-institucion {
-  font-size: var(--step--1);
-  font-weight: 600;
   color: var(--color-accent);
+  font-size: var(--step--1);
+  font-weight: 700;
 }
 
 .educacion-detalle {
-  font-size: var(--step--1);
   color: var(--color-muted);
+  font-size: var(--step--1);
 }
 
 .educacion-enlace {
-  margin-top: var(--space-2);
   width: fit-content;
-  font-size: var(--step--1);
-  font-weight: 600;
-  color: var(--color-text);
+  margin-top: var(--space-2);
   border-bottom: var(--border-width) solid var(--color-accent);
+  color: var(--color-text);
+  font-size: var(--step--1);
+  font-weight: 700;
   transition: color var(--transition);
 }
 
@@ -130,11 +120,11 @@
   color: var(--color-accent);
 }
 
-/* --- Escritorio: texto a la izquierda, educación a la derecha --- */
 @media (min-width: 60rem) {
   .perfil {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
     align-items: start;
+    column-gap: var(--space-8);
   }
 
   .perfil-encabezado,

@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Contacto — dos columnas: información de contacto | formulario.
-   Reutiliza variables, botones y títulos globales de index.css.
-   ========================================================================== */
-
 .contacto-encabezado {
   display: flex;
   flex-direction: column;
@@ -10,15 +5,13 @@
   margin-bottom: var(--space-7);
 }
 
-/* --- Cuerpo: información + formulario ------------------------------------ */
 .contacto-cuerpo {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-7);
   align-items: start;
 }
 
-/* --- Columna de información ---------------------------------------------- */
 .contacto-info {
   display: flex;
   flex-direction: column;
@@ -30,8 +23,8 @@
 }
 
 .contacto-info-descripcion {
-  color: var(--color-muted);
   max-width: 48ch;
+  color: var(--color-muted);
 }
 
 .contacto-datos {
@@ -49,14 +42,13 @@
   gap: var(--space-3);
 }
 
-/* Círculo con fondo tenue que aloja el icono */
 .contacto-dato-icono {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
   width: var(--space-6);
   height: var(--space-6);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-pill);
   background-color: var(--color-accent-soft);
   color: var(--color-accent);
@@ -74,27 +66,29 @@
 
 .contacto-dato-texto {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: var(--space-1);
-  min-width: 0;
 }
 
 .contacto-dato-etiqueta {
+  color: var(--color-muted);
   font-size: var(--step--1);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-muted);
 }
 
 .contacto-dato-valor,
 .contacto-dato-enlace {
-  font-size: var(--step-0);
   color: var(--color-text);
+  font-size: var(--step-0);
   overflow-wrap: anywhere;
 }
 
 .contacto-dato-enlace {
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: var(--space-1);
   transition: color var(--transition);
 }
 
@@ -113,7 +107,7 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--step--1);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .contacto-dato-enlace--red .contacto-icono {
@@ -123,28 +117,26 @@
   stroke: none;
 }
 
-/* --- Formulario ---------------------------------------------------------- */
 .contacto-formulario {
   min-width: 0;
 }
 
 .contacto-form {
   display: grid;
-  /* Se adapta al ancho de SU columna, no al de la ventana: dentro de la
-     columna estrecha los campos se apilan solos. */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
   gap: var(--space-5);
-  padding: var(--space-5);
+  padding: clamp(var(--space-4), 4vw, var(--space-6));
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-lg);
-  background-color: var(--color-surface);
+  background: var(--gradient-card);
+  box-shadow: var(--shadow-sm);
 }
 
 .contacto-campo {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: var(--space-2);
-  min-width: 0;
 }
 
 .contacto-campo--ancho {
@@ -152,37 +144,38 @@
 }
 
 .contacto-etiqueta {
-  font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: 0.04em;
   color: var(--color-text);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .contacto-control {
   width: 100%;
   padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-md);
   transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
 .contacto-control::placeholder {
   color: var(--color-muted);
+  opacity: 0.8;
 }
 
 .contacto-control:focus-visible {
-  outline: none;
   border-color: var(--color-accent);
+  outline: none;
   box-shadow: 0 0 0 var(--border-width-strong) var(--color-accent-soft);
 }
 
 .contacto-control:disabled {
+  cursor: progress;
   opacity: 0.65;
-  cursor: not-allowed;
 }
 
 textarea.contacto-control {
@@ -190,10 +183,9 @@ textarea.contacto-control {
   resize: vertical;
 }
 
-/* --- Acciones ------------------------------------------------------------ */
 .contacto-acciones {
-  grid-column: 1 / -1;
   display: flex;
+  grid-column: 1 / -1;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-4);
@@ -201,12 +193,11 @@ textarea.contacto-control {
 
 .contacto-enviar:disabled,
 .contacto-enviar:disabled:hover {
-  opacity: 0.75;
   cursor: progress;
+  opacity: 0.75;
   transform: none;
 }
 
-/* Indicador de carga del botón */
 .contacto-spinner {
   width: var(--space-4);
   height: var(--space-4);
@@ -222,18 +213,12 @@ textarea.contacto-control {
   }
 }
 
-/* --- Pantallas medianas: dos columnas (información | formulario) --------- */
 @media (min-width: 48rem) {
   .contacto-cuerpo {
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   }
-
-  .contacto-form {
-    padding: var(--space-6);
-  }
 }
 
-/* --- Sin movimiento: el indicador de carga se queda estático ------------- */
 @media (prefers-reduced-motion: reduce) {
   .contacto-spinner {
     animation: none;
