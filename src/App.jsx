@@ -7,6 +7,7 @@ import Proyectos from './components/Proyectos/Proyectos';
 import Certificados from './components/Certificados/Certificados';
 import Contacto from './components/Contacto/Contacto';
 import Footer from './components/Footer/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 import './index.css';
 import './App.css';
 
@@ -48,7 +49,9 @@ function App() {
         <Banner />
         <Perfil />
         <Habilidades />
-        <Proyectos />
+        <ErrorBoundary>
+          <Proyectos />
+        </ErrorBoundary>
         <Certificados />
         <Contacto />
       </main>

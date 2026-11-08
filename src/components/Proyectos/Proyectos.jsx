@@ -35,11 +35,12 @@ const Proyectos = () => {
         <ol className="proyectos-lista">
           {proyectos.map((proyecto, indice) => {
             const imagenes = imagenesDe(proyecto);
+            const destacada = proyecto?.destacada ?? false;
 
             return (
               <li
                 key={proyecto.titulo}
-                className={`proyecto${proyecto.destacada ? ' proyecto--destacado' : ''}`}
+                className={`proyecto${destacada ? ' proyecto--destacado' : ''}`}
               >
                 <div
                   className={`proyecto-media${
@@ -70,7 +71,7 @@ const Proyectos = () => {
 
                   <h3 className="proyecto-titulo">{proyecto.titulo}</h3>
                   <p className="proyecto-descripcion">{proyecto.descripcion}</p>
-                  {proyecto.nota ? <p className="proyecto-nota">{proyecto.nota}</p> : null}
+                  {proyecto?.nota ? <p className="proyecto-nota">{proyecto.nota}</p> : null}
 
                   {/* Tags de tecnologías (mapeo anidado) */}
                   <ul className="proyecto-tags">
@@ -93,7 +94,7 @@ const Proyectos = () => {
                       </a>
                     ) : null}
 
-                    {proyecto.frontendUrl ? (
+                    {proyecto?.frontendUrl ? (
                       <a
                         className="btn btn-outline"
                         href={proyecto.frontendUrl}
@@ -104,7 +105,7 @@ const Proyectos = () => {
                       </a>
                     ) : null}
 
-                    {proyecto.backendUrl ? (
+                    {proyecto?.backendUrl ? (
                       <a
                         className="btn btn-outline"
                         href={proyecto.backendUrl}

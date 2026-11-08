@@ -14,28 +14,34 @@ export function useReveal() {
 
   useEffect(() => {
     const elemento = ref.current;
+    if (!elemento) return undefined;
 
-    // Si no hay elemento o el navegador no soporta IntersectionObserver,
-    // se muestra el contenido sin animación.
-    if (!elemento || typeof IntersectionObserver === 'undefined') {
-      elemento?.classList.add('is-visible');
+    const mostrar = () => elemento.classList.add('is-visible');
+    const movimientoReducido =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (movimientoReducido || typeof IntersectionObserver === 'undefined') {
+      mostrar();
       return undefined;
     }
 
+    const respaldo = window.setTimeout(mostrar, 1500);
     const observador = new IntersectionObserver(
       (entradas) => {
-        entradas.forEach((entrada) => {
-          if (entrada.isIntersecting) {
-            entrada.target.classList.add('is-visible');
-            observador.unobserve(entrada.target);
-          }
-        });
+        if (!entradas.some((entrada) => entrada.isIntersecting)) return;
+        mostrar();
+        window.clearTimeout(respaldo);
+        observador.disconnect();
       },
-      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' },
+      { threshold: 0.05, rootMargin: '0px 0px 10% 0px' },
     );
 
     observador.observe(elemento);
-    return () => observador.disconnect();
+    return () => {
+      window.clearTimeout(respaldo);
+      observador.disconnect();
+    };
   }, []);
 
   return ref;
